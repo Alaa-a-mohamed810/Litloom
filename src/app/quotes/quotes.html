@@ -1,0 +1,27 @@
+<button
+  class="quote-fab"
+  aria-label="Open quotes"
+  (click)="toggle()"
+  [attr.aria-expanded]="open"
+>
+  <svg viewBox="0 0 24 24" class="icon" aria-hidden="true">
+  <path d="M6 17h3l2-4V7H6v6h3zm8 0h3l2-4V7h-5v6h3z"/>
+</svg>
+</button>
+
+<div class="quote-panel" *ngIf="open" @panel (keydown.escape)="close()" role="dialog" aria-label="Quotes">
+  <div class="quote-card" [class.reduced-motion]="reducedMotion">
+    <p class="quote-text">“{{ (quote$ | async)?.text }}”</p>
+    <p class="quote-author" *ngIf="(quote$ | async)?.author as a">— {{ a }}</p>
+
+    <div class="actions">
+      <button class="btn ghost" (click)="prev()" aria-label="Previous quote">‹</button>
+      <button class="btn" (click)="next()" aria-label="Next quote">Next</button>
+      <button class="btn ghost" (click)="random()" aria-label="Random quote">🎲</button>
+      <button class="btn mute" (click)="toggleRotate()" [attr.aria-pressed]="isRotating">
+        {{ isRotating ? 'Pause' : 'Auto' }}
+      </button>
+    </div>
+  </div>
+</div>
+

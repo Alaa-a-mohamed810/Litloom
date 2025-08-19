@@ -1,0 +1,27 @@
+<div *ngIf="book" class="bd__backdrop" (click)="backdropClick($event)" role="dialog" aria-modal="true" aria-label="Book details">
+  <div class="bd__panel" (click)="$event.stopPropagation()">
+    <button class="bd__close" type="button" (click)="close.emit()" aria-label="Close">×</button>
+
+    <div class="bd__layout">
+      <div class="bd__cover">
+        <img *ngIf="book.coverUrl"
+     [src]="book.coverUrl"
+     width="360" height="480" alt=""
+     class="bd__cover-img" />
+        <div *ngIf="!book.coverUrl" class="bd__cover-ph"></div>
+      </div>
+
+      <div class="bd__content">
+        <h2 class="bd__title">{{ book.title }}</h2>
+        <p class="bd__author">{{ book.author || 'Unknown' }}</p>
+
+        <div class="bd__meta">
+          <span class="bd__pill" *ngIf="book.status">Status: {{ book.status }}</span>
+          <span class="bd__pill" *ngIf="book.favorite">★ Favorite</span>
+        </div>
+
+        <p class="bd__desc" *ngIf="book.description">{{ book.description }}</p>
+      </div>
+    </div>
+  </div>
+</div>

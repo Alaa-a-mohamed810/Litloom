@@ -1,0 +1,32 @@
+<section class="nf">
+  <!-- Decorative blobs -->
+  <div class="blob b1" aria-hidden="true"></div>
+  <div class="blob b2" aria-hidden="true"></div>
+  <div class="grid" aria-hidden="true"></div>
+
+  <div class="card" role="region" aria-labelledby="nf-title">
+    <div class="code" aria-hidden="true">404</div>
+    <h1 id="nf-title" class="title">Page not found</h1>
+    <p class="sub">
+      The page you’re looking for doesn’t exist, moved, or is temporarily unavailable.
+    </p>
+
+    <div class="actions">
+      <button class="btn ghost" type="button" (click)="goBack()">
+        <i class="fa-solid fa-arrow-left-long"></i> Go back
+      </button>
+      <a class="btn primary" routerLink="/home">
+        <i class="fa-solid fa-house"></i> Home
+      </a>
+      <a class="btn" routerLink="/store">
+        <i class="fa-solid fa-book-open"></i> Store
+      </a>
+      <a class="btn" *ngIf="auth.isAuthenticated" routerLink="/library">
+        <i class="fa-solid fa-book"></i> My Library
+      </a>
+      <a class="btn" *ngIf="!auth.isAuthenticated" routerLink="/login">
+        <i class="fa-solid fa-right-to-bracket"></i> Login
+      </a>
+    </div>
+  </div>
+</section>

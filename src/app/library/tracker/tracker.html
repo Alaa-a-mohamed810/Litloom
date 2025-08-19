@@ -1,0 +1,226 @@
+<div class="tracker-shell">
+  <!-- Header -->
+<header class="tracker-header">
+  <div class="head-left">
+    <div class="chip glow">📖 Tracker</div>
+    <h1>Reading Tracker</h1>
+    <p>Log sessions, watch your streak, and hit your daily goal.</p>
+
+    <!-- Optional: tiny today status (show progress towards today’s goal) -->
+    <div class="today-pill" *ngIf="goalToday?.goal" [class.done]="goalToday.percent >= 100">
+      <span class="dot"></span>
+      {{ goalToday.minutes }} / {{ dailyGoalMinutes }} mins today
+    </div>
+  </div>
+
+  <div class="head-right">
+    <label for="goal" class="sr-only">Daily Goal (minutes)</label>
+
+    <!-- Compact goal setter -->
+    <div class="goal-saver" title="Set your daily reading goal in minutes">
+      <input
+        id="goal"
+        type="number"
+        min="5"
+        step="5"
+        [(ngModel)]="dailyGoalMinutes"
+        aria-label="Daily Goal (minutes)"
+      />
+      <span class="unit">mins</span>
+      <button class="btn pr" (click)="setDailyGoal(dailyGoalMinutes)">Save</button>
+    </div>
+
+    <!-- Tracker header action -->
+    <a class="btn link" routerLink="/library/goals" routerLinkActive="active" aria-label="Go to Goals">
+      🎯 Set / View Goals
+    </a>
+  </div>
+
+  <!-- Decorative wave -->
+  <div class="header-wave" aria-hidden="true"></div>
+</header>
+
+
+  <!-- KPI Cards -->
+  <section class="stats">
+    <div class="stat-card">
+      <div class="icon teal">⏱</div>
+      <div class="meta">
+        <div class="label">Total Minutes</div>
+        <div class="value">{{ totalMinutes }}</div>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="icon blue">📄</div>
+      <div class="meta">
+        <div class="label">Total Pages</div>
+        <div class="value">{{ totalPages }}</div>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="icon orange">📝</div>
+      <div class="meta">
+        <div class="label">Total Sessions</div>
+        <div class="value">{{ totalSessions }}</div>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="icon green">🔥</div>
+      <div class="meta">
+        <div class="label">Current Streak</div>
+        <div class="value">{{ currentStreak }} days</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="grid">
+    <!-- Add session -->
+    <div class="panel">
+      <h3>Add New Session</h3>
+
+      <div class="form-grid">
+        <label>Date
+          <input type="date" [(ngModel)]="newDate" />
+        </label>
+
+        <label>Minutes
+          <input type="number" min="1" [(ngModel)]="newMinutes" placeholder="e.g. 25" />
+        </label>
+
+        <label>Pages
+          <input type="number" min="0" [(ngModel)]="newPages" placeholder="optional" />
+        </label>
+
+        <!-- Book (custom dropdown with cover thumbnails) -->
+        <label>Book
+          <div class="book-select" (click)="$event.stopPropagation()">
+            <!-- Control -->
+            <button type="button" class="select-control" (pointerdown)="openBookMenu($event)">
+              <ng-container *ngIf="selectedBook; else noSel">
+                <img class="thumb" [src]="selectedBook.coverUrl || 'assets/placeholder-cover.png'" alt="" />
+                <span class="sel-title">{{ selectedBook.title }}</span>
+              </ng-container>
+              <ng-template #noSel>
+                <span class="placeholder">Choose a book…</span>
+                </ng-template>
+                <span class="caret">▾</span>
+            </button>
+
+
+            <!-- Menu -->
+            <div class="select-menu" *ngIf="bookMenuOpen" (pointerdown)="$event.stopPropagation()">
+              <div class="menu-list">
+                <button type="button" class="menu-item" *ngFor="let b of myBooks" [class.selected]="b.id === selectedBookId" (pointerdown)="chooseBook(b.id, $event)" title="{{ b.title }}">
+                  <img class="thumb" [src]="b.coverUrl || 'assets/placeholder-cover.png'" alt="" />
+                  <div class="meta">
+                    <div class="title">{{ b.title }}</div>
+                    <div class="author" *ngIf="b.author">{{ b.author }}</div>
+                  </div>
+                </button>
+
+                <div *ngIf="myBooks.length === 0" class="menu-empty">
+                  No books yet — add some in
+                  <a [routerLink]="['/library','all']" class="mybooks-link">My Books</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </label>
+
+        <label class="notes">Notes
+          <textarea rows="2" [(ngModel)]="newNotes" placeholder="optional notes"></textarea>
+        </label>
+      </div>
+
+      <button class="btn primary" (click)="addSession()">Add Session</button>
+      <div class="hint">Tip: only “Minutes” is required; others are optional.</div>
+    </div>
+
+    <!-- Goal & heatmap -->
+    <div class="panel today-panel">
+      <h3>Today</h3>
+
+      <div class="goal-wrap">
+        <div class="goal-label">
+          <span class="badge">🎯 {{ goalToday.goal }} mins goal</span>
+          &nbsp;Logged: <b>{{ goalToday.minutes }}</b> mins
+        </div>
+        <div class="progress">
+          <div class="progress-bar" [style.width.%]="goalToday.percent"></div>
+        </div>
+      </div>
+
+      <h3 class="mt16">Last 6 Weeks</h3>
+      <div class="heatmap">
+        <div
+          *ngFor="let c of heatmap"
+          class="cell"
+          [class.lv0]="c.intensity===0"
+          [class.lv1]="c.intensity===1"
+          [class.lv2]="c.intensity===2"
+          [class.lv3]="c.intensity===3"
+          [class.lv4]="c.intensity===4"
+          title="{{ c.date }} — {{ c.minutes }} mins"
+        ></div>
+      </div>
+      <div class="legend">
+        <span>Less</span>
+        <i class="cell lv0"></i><i class="cell lv1"></i><i class="cell lv2"></i><i class="cell lv3"></i><i class="cell lv4"></i>
+        <span>More</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sessions table -->
+  <section class="panel">
+    <h3>Session History</h3>
+
+    <div *ngIf="myBooks.length === 0" class="empty-hint">
+      <div class="empty-icon">📚</div>
+      <div class="empty-text">
+        <h3>No books in your library</h3>
+        <p>
+          Add some in
+          <a [routerLink]="['/library','all']" class="mybooks-link">My Books</a>
+          to start tracking your reading sessions.
+        </p>
+      </div>
+    </div>
+
+    <div *ngIf="sessions.length === 0" class="empty">
+      No sessions yet — add your first one above.
+    </div>
+
+    <div *ngIf="sessions.length > 0" class="table">
+      <div class="thead">
+        <div>Date</div>
+        <div>Book</div>
+        <div>Minutes</div>
+        <div>Pages</div>
+        <div>Notes</div>
+        <div></div>
+      </div>
+
+      <div class="row" *ngFor="let s of sessions">
+        <div>{{ s.date | date:'dd/MM/yyyy' }}</div>
+
+        <!-- Book cell with cover -->
+        <div class="book-cell">
+          <img class="thumb" [src]="getBookCover(s.bookId) || 'assets/placeholder-cover.png'" alt="" />
+          <span>{{ s.bookTitle || '—' }}</span>
+        </div>
+
+        <div>{{ s.minutes }}</div>
+        <div>{{ s.pages ?? '—' }}</div>
+        <div class="notes-col">{{ s.notes || '—' }}</div>
+        <div class="actions">
+          <button class="icon danger" title="Delete" (click)="removeSession(s.id)">🗑</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

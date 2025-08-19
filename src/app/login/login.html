@@ -1,0 +1,135 @@
+<section class="auth-hero rich">
+  <div class="mesh"></div>
+  <ul class="stars" aria-hidden="true">
+    <li></li><li></li><li></li><li></li><li></li>
+    <li></li><li></li><li></li><li></li><li></li>
+  </ul>
+  <span class="corner deco tl" aria-hidden="true"></span>
+  <span class="corner deco br" aria-hidden="true"></span>
+
+  <div class="auth-container">
+    <div class="auth-card aura">
+      <!-- Art / brand -->
+      <aside class="auth-art" aria-hidden="true">
+        <div class="art-inner">
+          <div class="crest">
+            <img src="../../assets/images/logo-icon.png" alt="LitLoom">
+          </div>
+
+          <h3 class="headline">Read • Track • Grow</h3>
+          <p class="tagline">Your shelves, goals, and progress—woven together.</p>
+
+          <div class="stack-wrap">
+            <div class="stack book-1"></div>
+            <div class="stack book-2"></div>
+            <div class="stack book-3"></div>
+            <div class="stack book-4"></div>
+          </div>
+
+          <blockquote class="quote">
+            “A reader lives a thousand lives before he dies.”
+            <span>— George R.R. Martin</span>
+          </blockquote>
+        </div>
+      </aside>
+
+      <!-- Form -->
+      <div class="auth-body">
+        <div class="w-100">
+          <header class="form-head">
+            <h1 class="title">Welcome back</h1>
+            <p class="subtitle">Sign in to continue to <strong>LitLoom</strong></p>
+          </header>
+
+          <div *ngIf="notice()" class="alert alert-warning custom-alert">{{ notice() }}</div>
+
+          <!-- Redundant submit wiring to guarantee firing -->
+          <form
+            (ngSubmit)="onSubmit()"
+            (submit)="onSubmit()"
+            #f="ngForm"
+            novalidate
+            class="form-grid">
+
+            <!-- Email -->
+            <div class="field floating">
+              <input
+                id="email"
+                class="form-control"
+                type="email"
+                name="email"
+                [(ngModel)]="email"
+                required
+                autocomplete="email"
+                placeholder=" "
+                (keydown.enter)="onSubmit()" />
+              <label for="email">Email</label>
+              <span class="field-icon"><i class="fa-regular fa-envelope"></i></span>
+            </div>
+
+            <!-- Password -->
+            <div class="field floating">
+              <input
+                id="password"
+                #pwdRef
+                class="form-control"
+                type="password"
+                name="password"
+                [(ngModel)]="password"
+                required
+                autocomplete="current-password"
+                placeholder=" "
+                (keydown.enter)="onSubmit()" />
+              <label for="password">Password</label>
+
+              <button
+                class="toggle-visibility"
+                type="button"
+                title="Show/Hide password"
+                [attr.aria-pressed]="pwdRef.type === 'text'"
+                (click)="pwdRef.type = (pwdRef.type === 'password' ? 'text' : 'password')">
+                <i *ngIf="pwdRef.type === 'password'" class="fa-regular fa-eye"></i>
+                <i *ngIf="pwdRef.type === 'text'" class="fa-regular fa-eye-slash"></i>
+              </button>
+            </div>
+
+            <small class="hint">
+              For Testing:-<br> Email: eve.holt@reqres.in / Pass: cityslicka
+            </small>
+
+            <!-- Submit -->
+            <button
+              type="submit"
+              class="btn btn-primary w-100 auth-btn"
+              (click)="onSubmit()"
+              [disabled]="loading()">
+              {{ loading() ? 'Signing in…' : 'Sign in' }}
+            </button>
+
+            <!-- Error -->
+            <div *ngIf="error()" class="alert alert-danger mt-3 custom-alert">{{ error() }}</div>
+
+            <!-- Links -->
+            <div class="alt-actions">
+              <a routerLink="/forgot-password">Forgot password?</a>
+              <span>•</span>
+              <a routerLink="/register">Create account</a>
+            </div>
+
+            <!-- Optional visual-only providers -->
+            <div class="divider"><span>or</span></div>
+            <div class="social-row">
+              <button type="button" class="social ghost">
+                <i class="fa-brands fa-google"></i> Continue with Google
+              </button>
+              <button type="button" class="social ghost">
+                <i class="fa-brands fa-github"></i> Continue with GitHub
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- /Form -->
+    </div>
+  </div>
+</section>

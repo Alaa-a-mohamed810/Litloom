@@ -1,0 +1,659 @@
+/* ---------- Floating pill navbar (glass) ---------- */
+.rounded-pill-navbar {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.55)) border-box;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  box-shadow: 0 10px 30px rgba(253, 175, 58, 0.25);
+  padding: 10px 32px;
+  margin: 6px auto;
+  max-width: 90%;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  position: fixed;
+  top: 12px;
+  z-index: 1000;
+  transition: box-shadow 240ms cubic-bezier(.2, .7, .2, 1);
+  transform: translateX(-50%);
+}
+
+.rounded-pill-navbar:hover {
+  box-shadow: 0 14px 38px rgba(253, 175, 58, 0.34);
+}
+
+/* Gradient stroke outline */
+.rounded-pill-navbar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  padding: 1px;
+  background: linear-gradient(90deg, rgba(253, 175, 58, 0.6), rgba(59, 112, 122, 0.4));
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+/* ---------- Brand ---------- */
+.brand-logo {
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.08));
+}
+
+.brand-wordmark {
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  font-size: 30px;
+  color: rgb(59, 112, 122);
+}
+.navbar-brand img{
+  height: 53px;
+  width: 80px;
+
+}
+/* ---------- Nav links with animated underline ---------- */
+.nav-item{
+  padding-left: 38px;
+  
+}
+.nav-link {
+  font-size: 22px;
+  font-weight: 700;
+  color: #cd6a1d;
+  padding: 6px 11px;
+  border-radius: 12px;
+  position: relative;
+  transition: color 240ms cubic-bezier(.2, .7, .2, 1), transform 240ms cubic-bezier(.2, .7, .2, 1);
+}
+
+.nav-link:hover {
+  color: rgb(253, 175, 58);
+  transform: translateY(-1px);
+}
+
+.nav-link.fancy::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 4px;
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, rgb(253, 175, 58), rgb(59, 112, 122));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 240ms cubic-bezier(.2, .7, .2, 1);
+  opacity: 0.9;
+}
+
+.nav-link.fancy:hover::after {
+  transform: scaleX(1);
+}
+
+.nav-link.active {
+  color: rgb(59, 112, 122);
+}
+
+.nav-link.active.fancy::after {
+  transform: scaleX(1);
+}
+
+/* ---------- Buttons ---------- */
+.btn-outline {
+  border: 1.5px solid #cd6a1d;
+  border-radius: 20px;
+  color: #cd6a1d;
+  font-weight: 700;
+  padding-top: 0.45rem;
+  padding-bottom: 0.45rem;
+  padding-left: 0.9rem;
+  padding-right: 0.9rem;
+  transition: all 240ms cubic-bezier(.2, .7, .2, 1);
+  background: transparent;
+}
+
+.btn-outline:hover {
+  background: linear-gradient(90deg, rgb(253, 175, 58), #ffb04c);
+  color: #ffffff;
+  border-color: transparent;
+  transform: translateY(-1px);
+}
+
+.btn.icon-btn {
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 14px;
+  padding-top: 0.45rem;
+  padding-bottom: 0.45rem;
+  padding-left: 0.65rem;
+  padding-right: 0.65rem;
+  line-height: 1;
+}
+
+.btn.icon-btn i {
+  font-size: 1.1rem;
+}
+
+/* ---------- Cart badge ---------- */
+.cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 20px;
+  height: 20px;
+  padding-left: 6px;
+  padding-right: 6px;
+  border-radius: 999px;
+  background: rgb(253, 175, 58);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 4px 10px rgba(253, 175, 58, 0.45);
+}
+
+/* ---------- Expanding search ---------- */
+.nav-search {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: rgba(255, 255, 255, 0.65);
+  border-radius: 14px;
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+  padding-left: 0.6rem;
+  padding-right: 0.6rem;
+  transition: box-shadow 240ms cubic-bezier(.2, .7, .2, 1), border-color 240ms cubic-bezier(.2, .7, .2, 1);
+}
+
+.nav-search i {
+  font-size: 0.95rem;
+  color: rgb(59, 112, 122);
+}
+
+.nav-search input {
+  width: 140px;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.95rem;
+  color: #1f2a2e;
+  transition: width 240ms cubic-bezier(.2, .7, .2, 1);
+}
+
+.nav-search input::placeholder {
+  color: #7a8b90;
+}
+
+.nav-search:focus-within {
+  border-color: rgba(253, 175, 58, 0.55);
+  box-shadow: 0 6px 20px rgba(253, 175, 58, 0.20);
+}
+
+.nav-search:focus-within input {
+  width: 220px;
+}
+
+/* ---------- Navbar toggler & offcanvas ---------- */
+.navbar-toggler {
+  border: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 0.2rem rgba(253, 175, 58, 0.35);
+}
+
+.navbar-toggler-icon {
+  filter: contrast(0.2);
+}
+
+/* ---------- Accessibility focus rings ---------- */
+.nav-link:focus-visible,
+.btn:focus-visible,
+.nav-search input:focus-visible {
+  outline: 2px solid rgba(253, 175, 58, 0.6);
+  outline-offset: 2px;
+  border-radius: 12px;
+}
+
+/* ---------- Small tweaks ---------- */
+ul li a i {
+  font-size: 20px;
+}
+
+.btn {
+  font-size: 16px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 992px) {
+  .brand-wordmark {
+    font-size: 1.1rem;
+  }
+
+  .nav-search input {
+    width: 120px;
+  }
+
+  .nav-search:focus-within input {
+    width: 180px;
+  }
+}
+
+/* ---------------------------------
+   Base pill buttons in the right cluster
+   --------------------------------- */
+.navbar .btn.icon-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: rgba(255, 255, 255, 0.65);
+  border-radius: 14px;
+  padding-top: 0.45rem;
+  padding-bottom: 0.45rem;
+  padding-left: 0.65rem;
+  padding-right: 0.65rem;
+  line-height: 1;
+  transition:
+    background 120ms cubic-bezier(.2, .7, .2, 1),
+    border-color 120ms cubic-bezier(.2, .7, .2, 1),
+    transform 120ms cubic-bezier(.2, .7, .2, 1),
+    box-shadow 120ms cubic-bezier(.2, .7, .2, 1);
+}
+
+.navbar .btn.icon-btn:hover {
+  transform: translateY(-1px);
+  border-color: rgba(253, 175, 58, 0.35);
+  box-shadow: 0 8px 22px rgba(253, 175, 58, 0.18);
+}
+
+.navbar .btn.icon-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.10) inset;
+}
+
+/* Keyboard focus ring for accessibility (matches your palette) */
+.navbar .btn.icon-btn:focus-visible,
+.navbar a.btn.btn-outline[routerLink="/register"]:focus-visible,
+.navbar .dropdown-item:focus-visible {
+  outline: 2px solid rgba(253, 175, 58, 0.65);
+  outline-offset: 2px;
+  border-radius: 12px;
+}
+
+/* ---------------------------------
+   CART button (routerLink="/cart")
+   --------------------------------- */
+.navbar a.btn.icon-btn[routerLink="/cart"] i {
+  font-size: 1.05rem;
+  color: #cd6a1d;
+  transform: translateZ(0);
+  transition: transform 120ms cubic-bezier(.2, .7, .2, 1), filter 120ms ease;
+}
+
+.navbar a.btn.icon-btn[routerLink="/cart"]:hover i {
+  transform: scale(1.06);
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.10));
+}
+
+/* Soft highlight halo on hover */
+.navbar a.btn.icon-btn[routerLink="/cart"]::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: rgba(253, 175, 58, 0.22);
+  filter: blur(4px);
+  opacity: 0;
+  transition: opacity 160ms ease-out;
+  pointer-events: none;
+}
+
+.navbar a.btn.icon-btn[routerLink="/cart"]:hover::after {
+  opacity: 1;
+}
+
+/* Badge: refined with a micro pop-in animation */
+.navbar .cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 20px;
+  height: 20px;
+  padding-left: 6px;
+  padding-right: 6px;
+  border-radius: 999px;
+  background: rgb(253, 175, 58);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 4px 10px rgba(253, 175, 58, 0.45);
+  animation: cartBadgePop 220ms ease-out;
+  transform-origin: 100% 0%;
+}
+
+@keyframes cartBadgePop {
+  0%   { transform: scale(0.7); opacity: 0; }
+  60%  { transform: scale(1.12); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ---------------------------------
+   LOGIN button (routerLink="/login")
+   subtle emphasis + ring on hover
+   --------------------------------- */
+.navbar a.btn.icon-btn[routerLink="/login"] {
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+.navbar a.btn.icon-btn[routerLink="/login"] span{
+  color: #2c3a3f;
+}
+
+.navbar a.btn.icon-btn[routerLink="/login"]:hover {
+  box-shadow: 0 8px 22px rgba(59, 112, 122, 0.18);
+  border-color: rgba(59, 112, 122, 0.35);
+}
+
+.navbar a.btn.icon-btn[routerLink="/login"] i {
+  font-size: 1.05rem;
+  color: #3b707a;
+  opacity: 0.95;
+  transition: transform 120ms cubic-bezier(.2, .7, .2, 1);
+}
+
+.navbar a.btn.icon-btn[routerLink="/login"]:hover i {
+  transform: translateY(-1px);
+}
+
+/* ---------------------------------
+   CREATE ACCOUNT (routerLink="/register")
+   Strong CTA feel, reusing your color system
+   --------------------------------- */
+.navbar a.btn.btn-outline[routerLink="/register"] {
+  border-width: 1.6px;
+  border-color: #cd6a1d;
+  color: #c96518;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  padding-top: 0.46rem;
+  padding-bottom: 0.46rem;
+  padding-left: 0.95rem;
+  padding-right: 0.95rem;
+  background: transparent;
+  transition:
+    background 120ms cubic-bezier(.2, .7, .2, 1),
+    color 120ms cubic-bezier(.2, .7, .2, 1),
+    border-color 120ms cubic-bezier(.2, .7, .2, 1),
+    transform 120ms cubic-bezier(.2, .7, .2, 1),
+    box-shadow 120ms cubic-bezier(.2, .7, .2, 1);
+}
+
+.navbar a.btn.btn-outline[routerLink="/register"]:hover {
+  background-color: #d9920fa4;
+  color: #ffffff;
+  border-color: orange;
+  transform: translateY(-1px);
+  box-shadow: 0 12px 26px rgba(253, 175, 58, 0.25);
+}
+
+.navbar a.btn.btn-outline[routerLink="/register"]:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 16px rgba(253, 175, 58, 0.18);
+}
+
+/* ---------------------------------
+   AUTH DROPDOWN (avatar/name trigger + menu)
+   (only visible when logged in)
+   --------------------------------- */
+
+/* Enhance the trigger button (uses your .btn.icon-btn) */
+.navbar .dropdown .btn.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  padding-left: 0.55rem;
+  padding-right: 0.6rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.80);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  transition:
+    background 160ms cubic-bezier(.2, .7, .2, 1),
+    transform 160ms cubic-bezier(.2, .7, .2, 1),
+    box-shadow 160ms cubic-bezier(.2, .7, .2, 1),
+    border-color 160ms cubic-bezier(.2, .7, .2, 1);
+}
+
+.navbar .dropdown .btn.icon-btn:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 10px 24px rgba(253, 175, 58, 0.18);
+  border-color: rgba(253, 175, 58, 0.35);
+}
+
+/* Caret: replace default with a crisp glyph that rotates */
+.navbar .dropdown .dropdown-toggle::after {
+  display: inline-block;
+  margin-left: 6px;
+  vertical-align: middle;
+  border: none;
+  content: "▾";
+  font-size: 0.8rem;
+  line-height: 1;
+  color: #7b8b91;
+  transition: transform 160ms cubic-bezier(.2, .7, .2, 1);
+}
+
+.navbar .dropdown.show .dropdown-toggle::after {
+  transform: rotate(180deg);
+}
+
+/* Avatar styling inside the trigger */
+.navbar .dropdown .dropdown-toggle img {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  object-fit: cover;
+  display: inline-block;
+  margin-right: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.6));
+}
+
+/* Fallback icon if no avatar */
+.navbar .dropdown .dropdown-toggle .fa-user-circle {
+  font-size: 1.2rem;
+  color: #3b707a;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15));
+}
+
+/* Username text */
+.navbar .dropdown .dropdown-toggle span {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #314046;
+}
+
+/* Dropdown menu: glass card look */
+.navbar .dropdown-menu {
+  border-radius: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 6px;
+  padding-right: 6px;
+  border: 1px solid rgba(253, 175, 58, 0.28);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.90));
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  min-width: 220px;
+}
+
+/* Positioning for right-edge alignment (Bootstrap class present) */
+.navbar .dropdown-menu-end {
+  right: 0;
+  left: auto;
+}
+
+/* Dropdown items: icon-aligned rows with comfy height */
+.navbar .dropdown-item {
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 12px;
+  padding-right: 12px;
+  font-weight: 600;
+  color: #2c3a3f;
+  transition:
+    background 140ms cubic-bezier(.2, .7, .2, 1),
+    color 140ms cubic-bezier(.2, .7, .2, 1),
+    transform 140ms cubic-bezier(.2, .7, .2, 1);
+}
+
+.navbar .dropdown-item i {
+  width: 18px;
+  text-align: center;
+  color: #3b707a;
+  opacity: 0.95;
+  font-size: 0.95rem;
+}
+
+.navbar .dropdown-item:hover,
+.navbar .dropdown-item:focus {
+  background: linear-gradient(90deg, rgba(253, 175, 58, 0.14), rgba(59, 112, 122, 0.12));
+  color: #1e2b30;
+  transform: translateX(2px);
+}
+
+/* Divider inside dropdown */
+.navbar .dropdown-divider {
+  margin-top: 6px;
+  margin-bottom: 6px;
+  border-top: 1px dashed rgba(49, 64, 70, 0.18);
+}
+
+/* Logout: gentle warning tone when hovering that row */
+.navbar .dropdown-item:has(.fa-arrow-right-from-bracket):hover {
+  background: linear-gradient(90deg, rgba(255, 142, 102, 0.18), rgba(253, 175, 58, 0.12));
+}
+
+/* ---------------------------------
+   Small-screen refinements
+   --------------------------------- */
+@media (max-width: 992px) {
+  .navbar .btn.icon-btn {
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+  }
+
+  .navbar a.btn.btn-outline[routerLink="/register"] {
+    padding-left: 0.85rem;
+    padding-right: 0.85rem;
+  }
+
+  .navbar .dropdown .dropdown-toggle span {
+    font-size: 0.9rem;
+  }
+
+  .navbar .dropdown .dropdown-toggle::after {
+    margin-left: 4px;
+  }
+
+  .navbar .dropdown-menu {
+    min-width: 200px;
+  }
+}
+
+/* ---------------------------------
+   Motion sensitivity respect
+   --------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .navbar .btn.icon-btn,
+  .navbar a.btn.btn-outline[routerLink="/register"],
+  .navbar .dropdown-item,
+  .navbar a.btn.icon-btn[routerLink="/cart"] i {
+    transition: none;
+  }
+
+  .navbar .cart-badge {
+    animation: none;
+  }
+}
+
+/* ---------- Fix pill centering & spacing ---------- */
+
+
+/* Smaller screens: give it breathing room and full width feel */
+@media (max-width: 575.98px) {
+  .rounded-pill-navbar {
+    max-width: calc(100% - 16px);
+    padding: 8px 14px;
+    top: 8px;
+  }
+}
+
+/* ---------- Brand sizing on small screens ---------- */
+
+
+@media (max-width: 575.98px) {
+  .navbar-brand img {
+    height: 40px;
+    width: 60px;
+  }
+  .brand-wordmark {
+    font-size: 1rem;
+  }
+}
+
+/* ---------- Desktop nav spacing smaller on md/lg ---------- */
+@media (max-width: 991.98px) {
+  .nav-item { padding-left: 16px; }
+  .nav-link { font-size: 18px; }
+}
+
+
+
+@media (max-width: 991.98px) {
+  .nav-search input { width: 120px; }
+  .nav-search:focus-within input { width: 180px; }
+}
+
+@media (max-width: 575.98px) {
+  .nav-search { padding-top: 0.25rem; padding-bottom: 0.25rem; }
+  .nav-search input { font-size: 0.9rem; }
+}
+/* ---------- Buttons & text shrink slightly on xs ---------- */
+@media (max-width: 575.98px) {
+  .navbar .btn.icon-btn { padding: 0.35rem 0.55rem; }
+  .navbar a.btn.btn-outline[routerLink="/register"] { padding: 0.4rem 0.75rem; }
+  .navbar .btn.icon-btn i { font-size: 1rem; }
+}
+
+/* ---------- Dropdown trigger avatar sizing fix ---------- */
+
+
+/* ---------- Optional: hide long wordmark on very narrow screens ---------- */
+@media (max-width: 360px) {
+  .brand-wordmark { display: none; }
+}
+

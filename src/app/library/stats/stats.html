@@ -1,0 +1,146 @@
+<div class="stats-shell">
+  <!-- Header -->
+  <header class="stats-header">
+    <div class="head-left">
+      <div class="chip">📊 Stats</div>
+      <h1>Reading Stats</h1>
+      <p>Your reading trends and progress at a glance.</p>
+    </div>
+
+    <div class="head-right">
+      <a class="btn link" routerLink="/library/tracker" aria-label="Go to Tracker">⏱ View Sessions</a>
+      <a class="btn link" routerLink="/library/goals" aria-label="Go to Goals">🎯 Goals</a>
+    </div>
+
+    <div class="header-wave" aria-hidden="true"></div>
+  </header>
+
+  <!-- KPI Cards (old names) -->
+  <section class="kpis">
+    <div class="kpi-card">
+      <div class="icon teal">⏱</div>
+      <div class="meta">
+        <div class="label">Total Minutes</div>
+        <div class="value">{{ totalMinutes }}</div>
+      </div>
+    </div>
+
+    <div class="kpi-card">
+      <div class="icon blue">📄</div>
+      <div class="meta">
+        <div class="label">Total Pages</div>
+        <div class="value">{{ totalPages }}</div>
+      </div>
+    </div>
+
+    <div class="kpi-card">
+      <div class="icon green">🔥</div>
+      <div class="meta">
+        <div class="label">Longest Streak</div>
+        <div class="value">{{ longestStreak }} days</div>
+      </div>
+    </div>
+
+    <div class="kpi-card">
+      <div class="icon orange">📈</div>
+      <div class="meta">
+        <div class="label">Avg / Day (30d)</div>
+        <div class="value">{{ avgDailyMinutes }} mins</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Compare to Goal (optional but safe) -->
+  <section class="panel compare-card">
+    <div class="compare-left">
+      <div class="compare-title">Last 7 days vs Daily Goal</div>
+      <div class="compare-kpis">
+        <div class="cmp-item">
+          <div class="cmp-label">Avg / day</div>
+          <div class="cmp-value">{{ cmpAvg7d }} mins</div>
+        </div>
+        <div class="cmp-item">
+          <div class="cmp-label">Your goal</div>
+          <div class="cmp-value">{{ dailyGoalMinutes }} mins</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="compare-right">
+      <div class="gauge">
+        <div class="gauge-ring">
+          <div class="gauge-fill" [style.width.%]="cmpPercentOfGoal"></div>
+        </div>
+        <div class="gauge-text">{{ cmpPercentOfGoal }}%</div>
+        <div class="gauge-sub">of goal</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Charts Grid -->
+  <section class="grid">
+    <!-- Activity Chart -->
+    <article class="panel">
+  <div class="panel-head">
+    <h3>Activity</h3>
+    <div class="seg">
+      <button class="seg-btn" [class.active]="timeframe==='7d'" (click)="switchFrame('7d')">
+        Last 7 days
+      </button>
+      <button class="seg-btn" [class.active]="timeframe==='12w'" (click)="switchFrame('12w')">
+        Last 12 weeks
+      </button>
+    </div>
+  </div>
+
+  <!-- Last 7 days -->
+  <div class="bar-chart w7" *ngIf="timeframe==='7d'">
+    <div class="bar" *ngFor="let p of last7Bars">
+      <div class="bar-body">
+        <div class="bar-col" [style.height.%]="p.pct">
+          <div class="bar-tip">{{ p.value }}</div>
+        </div>
+      </div>
+      <div class="bar-label">{{ p.label }}</div>
+    </div>
+  </div>
+
+  <!-- Last 12 weeks -->
+  <div class="bar-chart w12" *ngIf="timeframe==='12w'">
+    <div class="bar" *ngFor="let p of last12WeeksBars">
+      <div class="bar-body">
+        <div class="bar-col" [style.height.%]="p.pct">
+          <div class="bar-tip">{{ p.value }}</div>
+        </div>
+      </div>
+      <div class="bar-label">{{ p.label }}</div>
+    </div>
+  </div>
+</article>
+
+    <!-- Top Books (Donut + legend) -->
+    <article class="panel">
+      <div class="panel-head">
+        <h3>Top Books by Time</h3>
+      </div>
+
+      <div class="pie-wrap">
+        <div class="pie">
+          <div class="donut" [style.background]="'conic-gradient(' + genreStops + ')'"></div>
+          <div class="center">
+            <div class="big">{{ totalMinutes }}</div>
+            <div class="sub">mins total</div>
+          </div>
+        </div>
+
+        <ul class="legend">
+          <li *ngFor="let s of genrePie">
+            <span class="swatch" [style.background]="s.color"></span>
+            <span class="name">{{ s.label }}</span>
+            <span class="pct">{{ s.pct }}%</span>
+          </li>
+        </ul>
+      </div>
+    </article>
+  </section>
+</div>

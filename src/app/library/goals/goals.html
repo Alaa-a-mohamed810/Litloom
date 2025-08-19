@@ -1,0 +1,201 @@
+<div class="goals-shell">
+  <!-- Header -->
+  <header class="goals-header">
+    <div class="head-left">
+      <div class="chip glow">🎯 Goals</div>
+      <h1>My Goals</h1>
+      <p>Turn your reading into streaks, milestones, and wins.</p>
+    </div>
+
+    <div class="head-right">
+      <a class="btn link" routerLink="/library/tracker" routerLinkActive="active" aria-label="Go to Tracker">
+        ⏱ View Sessions
+      </a>
+      <button
+  class="btn add"
+  (click)="showAdd = !showAdd"
+  [attr.aria-expanded]="showAdd"
+>
+  {{ showAdd ? 'Close' : '+ Add Goal' }}
+</button>
+
+    </div>
+
+    <div class="header-wave" aria-hidden="true"></div>
+  </header>
+
+  <!-- Add Goal Panel -->
+  <section class="panel add-panel glass" *ngIf="showAdd">
+    <div class="form">
+      <label>
+        Title
+        <input type="text" [(ngModel)]="newTitle" placeholder="e.g. Read 30 minutes daily" />
+        <span class="assist">Give it a short, motivating name.</span>
+      </label>
+
+      <label>
+        Type
+        <select [(ngModel)]="newType">
+          <option value="minutesDaily">Read minutes (Daily)</option>
+          <option value="pagesMonthly">Read pages (Monthly)</option>
+        </select>
+        <span class="assist">Daily goals reset each day; monthly accumulate pages.</span>
+      </label>
+
+      <label>
+        Target
+        <input type="number" min="1" [(ngModel)]="newTarget" placeholder="e.g. 30 or 1000" />
+        <span class="assist">Minutes for daily • Pages for monthly</span>
+      </label>
+
+      <div class="form-actions">
+        <button class="btn primary" (click)="addGoal()">Create Goal</button>
+        <span class="hint">You can archive or delete later.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Legend -->
+  <section class="legend panel">
+    <div class="legend-item">
+      <span class="dot teal"></span> Primary progress
+    </div>
+    <div class="legend-item">
+      <span class="dot orange"></span> Support ring
+    </div>
+    <div class="legend-item">
+      <span class="badge soft">Streak mindset</span>
+    </div>
+  </section>
+
+  <!-- Active Goals -->
+  <section class="grid" *ngIf="goals.length > 0">
+    <article
+      class="goal-card"
+      *ngFor="let g of goals; trackBy: trackById"
+      [class.complete]="g.percent >= 100"
+    >
+      <div class="ring-wrap">
+        <!-- SVG rings -->
+        <svg class="ring" viewBox="0 0 140 140" aria-hidden="true">
+          <defs>
+            <linearGradient id="grad-teal" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#0ea5a3"></stop>
+              <stop offset="100%" stop-color="#14b8a6"></stop>
+            </linearGradient>
+            <linearGradient id="grad-orange" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#f59e0b"></stop>
+              <stop offset="100%" stop-color="#fb923c"></stop>
+            </linearGradient>
+          </defs>
+
+          <!-- background tracks -->
+          <circle cx="70" cy="70" r="60" class="track outer"></circle>
+          <circle cx="70" cy="70" r="46" class="track inner"></circle>
+
+          <!-- progress outer (primary) -->
+          <circle
+            cx="70" cy="70" r="60"
+            class="prog outer"
+            stroke="url(#grad-teal)"
+            [attr.stroke-dasharray]="circumference(60)"
+            [attr.stroke-dashoffset]="dashOffset(g.percent, 60)"
+          ></circle>
+
+          <!-- inner vibe ring (layered look, capped at 60%) -->
+          <circle
+            cx="70" cy="70" r="46"
+            class="prog inner"
+            stroke="url(#grad-orange)"
+            [attr.stroke-dasharray]="circumference(46)"
+            [attr.stroke-dashoffset]="dashOffset(clamp(g.percent, 0, 60), 46)"
+          ></circle>
+        </svg>
+
+        <!-- Center labels (refined) -->
+        <div class="center" aria-live="polite">
+          <div
+            class="pct"
+            [ngClass]="{
+              'low': g.percent < 50,
+              'mid': g.percent >= 50 && g.percent < 100,
+              'done': g.percent >= 100
+            }"
+          >
+            {{ g.percent }}%
+          </div>
+
+          <div class="kpi">
+            <ng-container [ngSwitch]="g.type">
+              <span *ngSwitchCase="'minutesDaily'">{{ g.primaryValue }} / {{ g.target }} mins</span>
+              <span *ngSwitchCase="'pagesMonthly'">{{ g.primaryValue }} / {{ g.target }} pages</span>
+            </ng-container>
+          </div>
+
+          <div class="sub">{{ g.subtitle }}</div>
+
+          
+        </div>
+        <div *ngIf="g.type === 'minutesDaily'" class="due-badge" [ngClass]="{ 'done': g.percent >= 100 }">
+            {{ g.percent >= 100 ? '✅ Done today' : '⏳ Due today' }}
+          </div>
+      </div>
+
+      <!-- Meta: type + TITLE + actions -->
+      <div class="meta">
+        <div class="topline">
+          <span
+            class="type-chip"
+            [ngClass]="{ daily: g.type === 'minutesDaily', monthly: g.type === 'pagesMonthly' }"
+            >{{ g.type === 'minutesDaily' ? 'Daily' : 'Monthly' }}</span
+          >
+          <span class="goal-title" [title]="g.title">{{ g.title }}</span>
+        </div>
+
+        <div class="actions">
+          <button class="btn ghost" (click)="archive(g)">Mark Done</button>
+          <button class="btn danger" (click)="remove(g)">Delete</button>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- Empty state -->
+  <section class="panel empty fancy" *ngIf="goals.length === 0 && completed.length === 0 && !showAdd">
+    <div class="empty-icon">📚</div>
+    <h3>No goals yet</h3>
+    <p>Create your first goal — try “Read 30 minutes daily”.</p>
+    <div class="cta-row">
+      <button class="btn add" (click)="showAdd = true">+ Add Goal</button>
+      <a class="btn link" routerLink="/library/tracker">⏱ Log a session</a>
+    </div>
+  </section>
+
+  <!-- Completed -->
+  <section class="panel completed" *ngIf="completed.length > 0">
+    <h3>Completed Goals</h3>
+    <div class="list">
+      <div class="row" *ngFor="let g of completed; trackBy: trackById">
+        <div class="mini-ring">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <circle cx="24" cy="24" r="20" class="track outer"></circle>
+            <circle cx="24" cy="24" r="20" class="prog done"></circle>
+          </svg>
+        </div>
+        <div class="txt">
+          <div class="t">{{ g.title }}</div>
+          <div class="s">
+            <ng-container [ngSwitch]="g.type">
+              <span *ngSwitchCase="'minutesDaily'">{{ g.target }} minutes (daily)</span>
+              <span *ngSwitchCase="'pagesMonthly'">{{ g.target }} pages (monthly)</span>
+            </ng-container>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn ghost" (click)="unarchive(g)">Restore</button>
+          <button class="btn danger" (click)="remove(g)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

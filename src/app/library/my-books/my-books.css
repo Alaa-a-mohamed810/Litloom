@@ -1,0 +1,260 @@
+/* ---- local reset (prevents weird inheritances) ---- */
+.mb *, .mb *::before, .mb *::after { box-sizing: border-box; }
+.mb { display: grid; gap: 14px; }
+
+/* ---- toolbar ---- */
+.mb__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap; /* prevents overlap on small widths */
+}
+
+.mb__filters { display: flex; gap: 8px; flex-wrap: wrap; }
+.mb__tab {
+  background: #f6faf9;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.mb__tab--active { background: #fff2d9; border-color: rgb(253,175,58); }
+
+.mb__chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.mb__chip {
+  background: #fff5df;
+  color: #1d2626;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 13px;
+}
+
+/* Middle area to center the new button between left filters and right chips */
+.mb__addmid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 160px; /* keeps it from collapsing on wrap */
+  margin-top: 10px;
+}
+.mb__addmid .special{
+  background-color: #325757;
+  color: #ffffff;
+  font-size: 20px;
+  box-shadow: 4px 4px 4px rgb(0, 0, 0);
+  transition: ease-in-out 500ms;
+}
+.mb__addmid .special:hover{ background-color: #325757dc; }
+
+/* ===== Enhanced Dropdown Look & Feel ===== */
+@keyframes mbDropIn {
+  0%   { opacity: 0; transform: translateY(-6px) scale(0.995); }
+  100% { opacity: 1; transform: translateY(0)    scale(1); }
+}
+
+.mb__dropdown {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,.08);
+  box-shadow: 0 14px 28px rgba(0,0,0,.10);
+  padding: 14px 14px 12px;
+  display: grid;
+  gap: 12px;
+  width: 50%;
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+  animation: mbDropIn .22s ease-out both;
+}
+.mb__dropdown::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: linear-gradient(90deg, #fdb557, #fdaf3a, #f6a125);
+  opacity: .95;
+}
+
+/* rows & columns */
+.mb__row { display: grid; gap: 12px; grid-template-columns: repeat(2, 1fr); }
+
+/* fields */
+.mb__field { display: grid; gap: 6px; }
+.mb__field label {
+  font-size: 13px; color: #505a5a; font-weight: 600; letter-spacing: .2px;
+}
+.req { color: #d04b4b; }
+
+.mb__field input,
+.mb__field textarea {
+  font-size: 14px;
+  padding: 9px 12px;
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 10px;
+  background: #ffffff;
+  outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.mb__field input::placeholder,
+.mb__field textarea::placeholder { color: #9aa4a4; }
+
+.mb__field input:hover,
+.mb__field textarea:hover {
+  border-color: rgba(0,0,0,.18);
+  background: #fdfefe;
+}
+.mb__field input:focus,
+.mb__field textarea:focus {
+  border-color: rgba(253,175,58,.9);
+  box-shadow: 0 0 0 3px rgba(253,175,58,.18);
+  background: #ffffff;
+}
+
+/* file input */
+.mb__field input[type="file"] { padding: 0; border: 0; }
+.mb__field input[type="file"]::file-selector-button {
+  height: 36px; padding: 0 12px; margin-right: 10px;
+  border-radius: 10px; border: 1px solid rgba(0,0,0,.12);
+  background: #ffffff; cursor: pointer; font-size: 13px;
+  transition: background .12s ease, border-color .12s ease;
+}
+.mb__field input[type="file"]::file-selector-button:hover {
+  background: #f8fbfb; border-color: rgba(0,0,0,.18);
+}
+
+/* preview aligns bottom and uses your existing cover box */
+.mb__preview { grid-column: span 1; display: grid; align-items: end; }
+
+/* actions row */
+.mb__actionsline { display: flex; gap: 8px; justify-content: flex-end; }
+.mb__actionsline .mb__tab{ background-color: rgba(253, 185, 84, 0.685); font-size: 14px; }
+.mb__actionsline .mb__tab:hover{ background-color: #325757; color: #ffffff; }
+.mb__actionsline .mb__tab { user-select: none; }
+.mb__actionsline .mb__tab:active { transform: translateY(1px); }
+
+/* responsive */
+@media (max-width: 960px) {
+  .mb__row { grid-template-columns: 1fr 1fr; }
+  .mb__field--wide { grid-column: span 2; }
+}
+@media (max-width: 560px) {
+  .mb__row { grid-template-columns: 1fr; }
+  .mb__field--wide { grid-column: span 1; }
+}
+
+/* ---- grid ---- */
+.mb__grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  margin-top: 20px;
+}
+
+/* ---- card ---- */
+.mb__card {
+  display: grid;
+  grid-template-rows: auto auto auto auto;
+  align-content: start;
+  gap: 8px;
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 16px;
+  padding: 12px;
+  box-shadow: 0 10px 20px rgba(0,0,0,.08);
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+.mb__card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 26px rgba(0,0,0,.12);
+  border-color: rgba(0,0,0,.10);
+}
+
+/* cover keeps a constant aspect ratio (prevents layout shifts) */
+.mb__cover {
+  width: 100%;
+  aspect-ratio: 3 / 4;            /* book-ish ratio */
+  border-radius: 12px;
+  background: linear-gradient(135deg, #e6eef0, #d9e7e6);
+  overflow: hidden;               /* ensure image is clipped to rounded corners */
+  position: relative;
+}
+/* make images fill the cover safely */
+.mb__cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 12px;
+}
+
+/* text */
+.mb__title { margin: 0; font-size: 15px; font-weight: 700; line-height: 1.25; color: #1d2626; }
+.mb__author { margin: 0; font-size: 13px; color: #505a5a; }
+
+/* button pinned at the bottom by grid flow */
+.mb__btn {
+  height: 32px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,.10);
+  background: #f1ffff;
+  cursor: pointer;
+  font-size: 13px;
+  justify-self: start; /* left align */
+}
+.mb__btn:hover { background: #fff2d9; border-color: rgba(0,0,0,.14); }
+
+/* ---- small screens ---- */
+@media (max-width: 520px) {
+  .mb__grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+}
+
+/* ---------- NEW: Fallback tile for missing covers ---------- */
+.mb__nocover {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f6f7fb 0%, #eef1f7 100%);
+  border: 1px dashed #cdd4e0;
+  color: #7a8699;
+  font-size: 2rem; /* emoji/icon size */
+}
+
+/* ---------- NEW: Empty state ---------- */
+.mb__empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+  padding: 32px;
+  margin: 24px 0;
+  border-radius: 16px;
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  color: #64748b;
+}
+.mb__empty::before {
+  content: '📚';
+  font-size: 2rem;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+/* ---------- Dark mode tweaks (optional) ---------- */
+@media (prefers-color-scheme: dark) {
+  .mb__nocover {
+    background: #1f2530;
+    border-color: #3a4354;
+    color: #9aa6bd;
+  }
+  .mb__empty {
+    background: #111827;
+    border-color: #334155;
+    color: #94a3b8;
+  }
+}

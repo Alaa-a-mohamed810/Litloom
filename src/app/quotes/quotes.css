@@ -1,0 +1,106 @@
+:host {
+  position: fixed;
+  inset: auto var(--safe-right, 16px) var(--safe-bottom, 16px) auto;
+  z-index: 9999;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  /* iOS safe areas */
+  --safe-right: max(16px, env(safe-area-inset-right));
+  --safe-bottom: max(16px, env(safe-area-inset-bottom));
+}
+
+.quote-fab {
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  border: none;
+  background: #758f6b; 
+  color: white;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 0 30px rgba(54, 52, 47, 0.404);
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+.quote-fab:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+}
+
+.quote-fab:active {
+  transform: translateY(0);
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+  fill: currentColor;
+}
+
+.quote-panel {
+  position: absolute;
+  bottom: 72px;
+  right: 0;
+  width: min(360px, calc(100vw - 32px));
+}
+
+.quote-card {
+  background: var(--card-bg, rgb(255, 237, 214)); /* beige */
+  color: #1b1f23;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 16px 16px 12px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+
+.quote-text {
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0 0 6px 0;
+}
+
+.quote-author {
+  font-size: 13px;
+  opacity: 0.75;
+  margin: 0 0 10px 0;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.btn {
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background: orange;
+}
+
+.btn:hover {
+  filter: brightness(0.97);
+}
+
+.btn.ghost {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.btn.mute {
+  background: #ffd35b;
+}
+
+.btn:focus-visible {
+  outline: 2px solid #111;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quote-card {
+    transition: none !important;
+  }
+}

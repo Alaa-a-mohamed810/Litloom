@@ -1,0 +1,130 @@
+<section class="auth-hero rich">
+  <div class="mesh"></div>
+  <ul class="stars" aria-hidden="true">
+    <li></li><li></li><li></li><li></li><li></li>
+    <li></li><li></li><li></li><li></li><li></li>
+  </ul>
+  <span class="corner deco tl" aria-hidden="true"></span>
+  <span class="corner deco br" aria-hidden="true"></span>
+
+  <div class="auth-container">
+    <div class="auth-card aura swapped">
+      
+      <!-- Form (left now) -->
+      <div class="auth-body">
+        <div class="w-100">
+          <header class="form-head">
+            <h1 class="title">Create your account</h1>
+            <p class="subtitle">Join <strong>LitLoom</strong> and start your reading journey</p>
+          </header>
+
+          <div *ngIf="error()" class="alert alert-danger custom-alert">{{ error() }}</div>
+
+          <form
+            (ngSubmit)="onSubmit()"
+            (submit)="onSubmit()"
+            #f="ngForm"
+            novalidate
+            class="form-grid">
+
+            <!-- Name -->
+            <div class="field floating">
+              <input
+                id="name"
+                class="form-control"
+                type="text"
+                name="name"
+                [(ngModel)]="name"
+                placeholder=" "
+                autocomplete="name" />
+              <label for="name">Full Name</label>
+              <span class="field-icon"><i class="fa-regular fa-user"></i></span>
+            </div>
+
+            <!-- Email -->
+            <div class="field floating">
+              <input
+                id="email"
+                class="form-control"
+                type="email"
+                name="email"
+                [(ngModel)]="email"
+                required
+                placeholder=" "
+                autocomplete="email" />
+              <label for="email">Email</label>
+              <span class="field-icon"><i class="fa-regular fa-envelope"></i></span>
+            </div>
+
+            <!-- Password -->
+            <div class="field floating">
+              <input
+                id="password"
+                #pwdRef
+                class="form-control"
+                type="password"
+                name="password"
+                [(ngModel)]="password"
+                required
+                placeholder=" "
+                autocomplete="new-password" />
+              <label for="password">Password</label>
+              <button
+                class="toggle-visibility"
+                type="button"
+                title="Show/Hide password"
+                [attr.aria-pressed]="pwdRef.type === 'text'"
+                (click)="pwdRef.type = (pwdRef.type === 'password' ? 'text' : 'password')">
+                <i *ngIf="pwdRef.type === 'password'" class="fa-regular fa-eye"></i>
+                <i *ngIf="pwdRef.type === 'text'" class="fa-regular fa-eye-slash"></i>
+              </button>
+            </div>
+
+            <small class="hint">For Testing:-<br> Email: eve.holt@reqres.in / Password: pistol</small>
+
+            <!-- Submit -->
+            <button
+              type="submit"
+              class="btn btn-primary w-100 auth-btn"
+              (click)="onSubmit()"
+              [disabled]="loading()">
+              {{ loading() ? 'Creating account…' : 'Create Account' }}
+            </button>
+
+            <!-- Links -->
+            <div class="alt-actions">
+              <span>Already have an account?</span>
+              <a routerLink="/login">Sign in</a>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- /Form -->
+
+      <!-- Art / brand (right now) -->
+      <aside class="auth-art" aria-hidden="true">
+        <div class="art-inner">
+          <div class="crest">
+            <img src="../../assets/images/logo-icon.png" alt="LitLoom">
+          </div>
+
+          <h3 class="headline">Start Fresh</h3>
+          <p class="tagline">Track books, set goals, and grow your library.</p>
+
+          <div class="stack-wrap">
+            <div class="stack book-1"></div>
+            <div class="stack book-2"></div>
+            <div class="stack book-3"></div>
+            <div class="stack book-4"></div>
+          </div>
+
+          <blockquote class="quote">
+            “Once you learn to read, you will be forever free.”
+            <span>— Frederick Douglass</span>
+          </blockquote>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+

@@ -1,0 +1,138 @@
+<!-- Cart Page (navbar-aware) -->
+<section class="cart-page" aria-label="Cart page">
+
+  <!-- Empty state -->
+  <div *ngIf="!items.length" class="empty-state">
+    <div class="empty-card">
+      <div class="empty-emoji" aria-hidden="true">🛒</div>
+      <h2>Your cart is empty</h2>
+      <p>Browse our collection and add some books!</p>
+      <a routerLink="/store" class="btn btn-primary">Explore Our Bookstore</a>
+
+      <div class="empty-perks" role="list">
+        <div class="perk" role="listitem">
+          <span class="perk-icon" aria-hidden="true">⚡</span>
+          <span>Instant checkout</span>
+        </div>
+        <div class="perk" role="listitem">
+          <span class="perk-icon" aria-hidden="true">🚚</span>
+          <span>Free delivery over $50</span>
+        </div>
+        <div class="perk" role="listitem">
+          <span class="perk-icon" aria-hidden="true">🔁</span>
+          <span>Easy returns</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart content -->
+  <div *ngIf="items.length" class="cart-wrap">
+
+    <!-- Left column: Items -->
+    <div class="cart-col">
+      <header class="cart-header">
+        <h1 class="cart-title">Your Cart</h1>
+        <div class="cart-subtitle">
+          <span class="pill">{{ items.length }} {{ items.length === 1 ? 'item' : 'items' }}</span>
+          <span class="ship-note">Free delivery on orders over $50</span>
+        </div>
+      </header>
+
+      <div class="cart-list" role="list">
+        <article class="cart-item" role="listitem" *ngFor="let item of items; trackBy: trackByBookId">
+          <div class="thumb">
+            <img
+              [src]="item.book.image"
+              [alt]="item.book.title"
+              (error)="onImgError($event)"
+              loading="lazy">
+          </div>
+
+          <div class="details">
+            <h3 class="title" title="{{ item.book.title }}">{{ item.book.title }}</h3>
+
+            <div class="meta" aria-label="Book info">
+              <span class="genre">{{ item.book.genre }}</span>
+              <span class="authors" *ngIf="item.book.authors?.length"> · {{ item.book.authors.join(', ') }}</span>
+            </div>
+
+            <div class="price-row" aria-label="Line item">
+              <span class="unit-price" aria-label="Unit price">
+                {{ item.book.price | currency:'USD':'symbol':'1.2-2' }}
+              </span>
+              <span class="x" aria-hidden="true">×</span>
+
+              <div class="qty" role="group" aria-label="Quantity">
+                <button class="qty-btn" (click)="dec(item)" aria-label="Decrease quantity">−</button>
+                <span class="qty-num" aria-live="polite">{{ item.qty }}</span>
+                <button class="qty-btn" (click)="inc(item)" aria-label="Increase quantity">+</button>
+              </div>
+
+              <span class="line-total" aria-label="Line total">
+                {{ (item.book.price || 0) * item.qty | currency:'USD':'symbol':'1.2-2' }}
+              </span>
+            </div>
+          </div>
+
+          <button class="remove-btn" (click)="remove(item)" aria-label="Remove item">✕</button>
+        </article>
+      </div>
+    </div>
+
+    <!-- Right column: Summary -->
+    <aside class="summary" aria-label="Order summary">
+      <h2>Order Summary</h2>
+
+      <div class="coupon" aria-label="Coupon section">
+        <label for="couponInput">Promo code</label>
+        <div class="coupon-row">
+          <input id="couponInput" type="text" placeholder="Enter code">
+          <button class="btn btn-ghost" type="button" aria-disabled="true">Apply</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <span>Subtotal</span>
+        <span>{{ subtotal | currency:'USD':'symbol':'1.2-2' }}</span>
+      </div>
+
+      <div class="row muted">
+        <span>Shipping</span>
+        <span class="free">Free over $50</span>
+      </div>
+
+      <div class="row muted">
+        <span>Tax</span>
+        <span>Calculated at checkout</span>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="total row">
+        <span>Total</span>
+        <span>{{ subtotal | currency:'USD':'symbol':'1.2-2' }}</span>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-outline" (click)="clear()">Clear Cart</button>
+        <button class="btn btn-primary" type="button"><a href="https://www.amazon.com/amz-books/store?ref=ebooks_dsk_sn_books-logo-1b731">Checkout</a></button>
+      </div>
+
+      <div class="trust">
+        <div class="trust-row">
+          <span class="trust-icon" aria-hidden="true">🔒</span>
+          <span class="trust-text">Secure checkout</span>
+        </div>
+        <div class="trust-row">
+          <span class="trust-icon" aria-hidden="true">💳</span>
+          <span class="trust-text">Cards & wallets accepted</span>
+        </div>
+        <div class="trust-row">
+          <span class="trust-icon" aria-hidden="true">⭐</span>
+          <span class="trust-text">Loved by readers</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>

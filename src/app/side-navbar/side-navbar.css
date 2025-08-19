@@ -1,0 +1,457 @@
+/* =========================================================
+   RAIL (SIDE NAVBAR) — CONTAINER
+   ========================================================= */
+.rail {
+  position: sticky;
+  top: 24px;
+  align-self: start;
+  height: calc(100vh - 48px);
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 22px;
+  color: #f3f7f6;
+  background: linear-gradient(180deg, #2c4949 0%, #203c3c 80%);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  z-index: 2;
+}
+
+/* Independent scroll with styled scrollbar */
+.rail {
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+}
+.rail::-webkit-scrollbar {
+  width: 10px;
+}
+.rail::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+.rail::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+.rail:hover::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.33);
+  background-clip: padding-box;
+}
+
+/* =========================================================
+   PROFILE HEADER (PROFILE CHIP)
+   ========================================================= */
+.brand--profile {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  padding-top: 8px;
+  padding-bottom: 14px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 10px;
+}
+
+.profile-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  color: #f3f7f6;
+  min-height: 46px;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background 140ms ease,
+    border-color 140ms ease,
+    box-shadow 140ms ease,
+    transform 120ms ease;
+}
+.profile-chip:hover {
+  background: rgba(255, 255, 255, 0.10);
+  border-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.15);
+}
+.profile-chip:active {
+  transform: translateY(0);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.18);
+}
+.profile-chip:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(253, 175, 58, 0.35);
+}
+
+/* avatar or fallback icon */
+.chip-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  object-fit: cover;
+  display: block;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.55));
+}
+.chip-icon {
+  font-size: 30px;
+  line-height: 1;
+  opacity: 0.98;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.25));
+}
+
+/* name text */
+.chip-name {
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+  font-size: 15px;
+}
+
+.brand {
+  display: grid;
+  grid-template-columns: 54px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding-top: 8px;
+  padding-bottom: 14px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 15px;
+}
+
+/* =========================================================
+   GROUP LABEL / DIVIDER
+   ========================================================= */
+.group-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: #bcd3d2;
+  padding-top: 8px;
+  padding-bottom: 4px;
+  padding-left: 12px;
+  padding-right: 12px;
+  opacity: 0.95;
+}
+
+.divider {
+  margin-top: 12px;
+  margin-bottom: 12px;
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.22), rgba(255,255,255,0.06));
+  border-radius: 1px;
+}
+
+/* =========================================================
+   NAV LIST
+   ========================================================= */
+.nav {
+  display: grid;
+  gap: 6px;
+  padding-top: 30px;
+  padding-bottom: 8px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+/* Item base */
+.item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 26px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 14px;
+  color: #f3f7f6;
+  text-decoration: none;
+  opacity: 0.96;
+  transition:
+    background 180ms ease,
+    transform 80ms ease,
+    color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+/* subtle hover glass card */
+.item:hover {
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.16);
+  transform: translateY(-1px);
+}
+.item:active {
+  transform: translateY(0);
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.18);
+}
+
+/* Left accent bar (visible on active) */
+.dot {
+  position: absolute;
+  left: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 14px;
+  border-radius: 4px;
+  background: transparent;
+  transition: background 180ms ease, height 180ms ease, left 180ms ease, opacity 180ms ease;
+  opacity: 0.9;
+}
+
+/* Icon */
+.icon {
+  width: 22px;
+  height: 22px;
+  display: inline-grid;
+  place-items: center;
+}
+.icon svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  transition: transform 120ms ease, opacity 120ms ease;
+}
+.item:hover .icon svg {
+  transform: translateY(-1px);
+  opacity: 0.98;
+}
+
+/* Label */
+.label {
+  white-space: nowrap;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  font-size: 15px;
+}
+
+/* Badge (placeholder span in your HTML) */
+.badge {
+  display: inline-grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
+  padding-left: 6px;
+  padding-right: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 800;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+}
+
+/* Active pill */
+.item.active {
+  background: linear-gradient(180deg, #eff5f5 0%, #e7f0f0 100%);
+  color: #1e2626;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.20);
+}
+.item.active .icon svg {
+  opacity: 1;
+}
+.item.active .dot {
+  left: 0;
+  height: 18px;
+  background: rgb(253, 175, 58);
+  border-radius: 0 6px 6px 0;
+}
+
+/* Animated entrance for active item on first render */
+.item.active {
+  animation: railActivePop 220ms ease-out;
+  transform-origin: 10% 50%;
+}
+@keyframes railActivePop {
+  0%   { transform: scale(0.98); box-shadow: 0 6px 16px rgba(0, 0, 0, 0.16); }
+  100% { transform: scale(1); box-shadow: 0 16px 36px rgba(0, 0, 0, 0.20); }
+}
+
+/* =========================================================
+   COLLAPSED (icon-only) — :host.collapsed
+   ========================================================= */
+:host.collapsed .meta,
+:host.collapsed .label,
+:host.collapsed .badge,
+:host.collapsed .group-label,
+:host.collapsed .tip-card {
+  display: none !important;
+}
+
+:host.collapsed .rail {
+  width: 80px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+:host.collapsed .brand {
+  grid-template-columns: 1fr auto;
+}
+
+:host.collapsed .avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+}
+
+:host.collapsed .item {
+  grid-template-columns: 1fr;
+  place-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+:host.collapsed .item .dot {
+  display: none;
+}
+
+/* Keep icons crisp in collapsed state */
+:host.collapsed .icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* Rotate the collapse arrow when collapsed */
+:host.collapsed .collapse svg {
+  transform: rotate(180deg);
+  transition: transform 160ms ease;
+}
+
+/* =========================================================
+   PRO TOOLTIP ON HOVER WHEN COLLAPSED
+   Uses your [attr.title] bindings. Shows only if there's a title.
+   ========================================================= */
+:host.collapsed .item[title]:hover::after {
+  content: attr(title);
+  position: fixed;
+  left: 92px;
+  /* adjust vertical to align with item */
+  transform: translateY(-50%);
+  top: auto;
+  /* fallback: derive from mouse not possible in CSS; so center approx */
+}
+
+:host.collapsed .item[title] {
+  position: relative;
+}
+:host.collapsed .item[title]::after {
+  content: attr(title);
+  position: absolute;
+  left: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px;
+  background: rgba(22, 32, 32, 0.96);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.28);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 140ms ease, transform 140ms ease;
+}
+:host.collapsed .item[title]:hover::after {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+
+/* Small arrow for tooltip */
+:host.collapsed .item[title]:hover::before {
+  content: "";
+  position: absolute;
+  left: calc(100% + 2px);
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  width: 8px;
+  height: 8px;
+  background: rgba(22, 32, 32, 0.96);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+  border-radius: 2px;
+  opacity: 1;
+}
+
+/* =========================================================
+   ACCESSIBILITY FOCUS
+   ========================================================= */
+.item:focus-visible,
+.collapse:focus-visible,
+.profile-chip:focus-visible {
+  outline: 2px solid rgba(253, 175, 58, 0.60);
+  outline-offset: 2px;
+  border-radius: 12px;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .profile-chip,
+  .item,
+  .collapse,
+  .icon svg {
+    transition: none;
+  }
+  .item.active {
+    animation: none;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE: AUTO-COLLAPSE UNDER 980px
+   ========================================================= */
+@media (max-width: 980px) {
+  :host:not(.collapsed) .meta,
+  :host:not(.collapsed) .label,
+  :host:not(.collapsed) .badge,
+  :host:not(.collapsed) .group-label,
+  :host:not(.collapsed) .tip-card {
+    display: none !important;
+  }
+  :host:not(.collapsed) .rail {
+    width: 80px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  :host:not(.collapsed) .brand {
+    grid-template-columns: 1fr auto;
+  }
+  :host:not(.collapsed) .avatar {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+  }
+  :host:not(.collapsed) .item {
+    grid-template-columns: 1fr;
+    place-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  :host:not(.collapsed) .item .dot {
+    display: none;
+  }
+}

@@ -1,0 +1,137 @@
+<!-- Top Navbar -->
+<nav class="navbar navbar-expand-lg rounded-pill-navbar fixed-top" aria-label="LitLoom main" data-aos="fade-down" data-aos-duration="1000">
+  <div class="container-fluid justify-content-between align-items-center">
+
+    <!-- Brand -->
+    <a class="navbar-brand d-flex align-items-center order-lg-1" routerLink="/home" data-aos="fade-up" data-aos-delay="300">
+      <img src="../../assets/images/logo-icon.png" alt="LitLoom logo" class="brand-logo" />
+      <span class="brand-wordmark ms-2">LitLoom</span>
+    </a>
+
+    <!-- Right cluster (mobile-first) -->
+    <div class="d-flex align-items-center gap-2 order-lg-3">
+
+      <!-- Search -->
+      <div class="nav-search d-none d-sm-flex" data-aos="fade-up" data-aos-delay="350" role="search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <!-- remove <a> wrapper around input; it breaks semantics -->
+        <input type="search" placeholder="Search books…" aria-label="Search books" />
+      </div>
+
+      <!-- Cart -->
+      <a class="btn icon-btn" routerLink="/cart" aria-label="Open cart" data-aos="fade-up" data-aos-delay="400">
+        <i class="fas fa-cart-shopping"></i>
+        <span class="cart-badge" *ngIf="(auth.currentUser$ | async) && cartCount > 0">{{ cartCount }}</span>
+      </a>
+
+      <!-- Auth -->
+      <ng-container *ngIf="(auth.currentUser$ | async) as user; else guestAuth">
+        <div class="dropdown d-none d-sm-block" data-aos="fade-up" data-aos-delay="450">
+          <button
+            class="btn icon-btn dropdown-toggle d-flex align-items-center"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            aria-label="Account menu"
+          >
+            <ng-container *ngIf="(profile.profile$ | async) as p">
+              <ng-container *ngIf="p.avatarUrl; else noAvatar">
+                <img [src]="p.avatarUrl" alt="Profile avatar" />
+              </ng-container>
+              <ng-template #noAvatar>
+                <i class="fa-solid fa-user-circle me-1"></i>
+              </ng-template>
+              <span class="d-none d-md-inline">{{ p.name || user.email }}</span>
+            </ng-container>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end shadow">
+            <li><a class="dropdown-item" routerLink="/profile"><i class="fa-regular fa-id-badge me-2"></i> Profile</a></li>
+            <li><a class="dropdown-item" routerLink="/library"><i class="fa-solid fa-book me-2"></i> My Library</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><button class="dropdown-item" (click)="logout()"><i class="fa-solid fa-arrow-right-from-bracket me-2"></i> Log out</button></li>
+          </ul>
+        </div>
+      </ng-container>
+
+      <ng-template #guestAuth>
+        <a class="btn icon-btn d-none d-sm-inline-flex" routerLink="/login" aria-label="Login" data-aos="fade-up" data-aos-delay="450">
+          <i class="fa-solid fa-right-to-bracket me-1"></i>
+          <span class="d-none d-sm-inline">Login</span>
+        </a>
+        <a class="btn btn-outline only d-none d-sm-inline-flex" routerLink="/register" aria-label="Create account" data-aos="fade-up" data-aos-delay="470">
+          Register
+        </a>
+      </ng-template>
+
+      <!-- Mobile toggler -->
+      <button
+        class="navbar-toggler shadow-none ms-1 d-lg-none"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#litloomOffcanvas"
+        aria-controls="litloomOffcanvas"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+
+    <!-- Desktop menu -->
+    <div class="collapse navbar-collapse order-lg-2">
+      <ul class="navbar-nav mx-auto gap-2 align-items-center d-none d-lg-flex">
+        <li class="nav-item"><a class="nav-link fancy" routerLink="/home" routerLinkActive="active" aria-current="page">Home</a></li>
+        <li class="nav-item"><a class="nav-link fancy" routerLink="/store" routerLinkActive="active">Store</a></li>
+        <li class="nav-item"><a class="nav-link fancy" routerLink="/library" routerLinkActive="active">Library</a></li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+<!-- Mobile Offcanvas Menu -->
+<div class="offcanvas offcanvas-end litloom-offcanvas" tabindex="-1" id="litloomOffcanvas" aria-labelledby="litloomOffcanvasLabel">
+  <div class="offcanvas-header">
+    <div class="d-flex align-items-center gap-2">
+      <img src="../../assets/images/logo-icon.png" alt="LitLoom" class="offcanvas-logo" />
+      <h5 class="offcanvas-title m-0" id="litloomOffcanvasLabel">LitLoom</h5>
+    </div>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+
+  <div class="offcanvas-body d-flex flex-column gap-3">
+    <!-- Mobile search -->
+    <div class="nav-search w-100 d-flex d-sm-none">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="search" placeholder="Search books…" aria-label="Search books (mobile)" />
+    </div>
+
+    <ul class="navbar-nav flex-column gap-2">
+      <li class="nav-item"><a class="nav-link fancy w-100" data-bs-dismiss="offcanvas" routerLink="/home" routerLinkActive="active">Home</a></li>
+      <li class="nav-item"><a class="nav-link fancy w-100" data-bs-dismiss="offcanvas" routerLink="/store" routerLinkActive="active">Store</a></li>
+      <li class="nav-item"><a class="nav-link fancy w-100" data-bs-dismiss="offcanvas" routerLink="/library" routerLinkActive="active">Library</a></li>
+    </ul>
+
+    <hr class="my-2">
+
+    <!-- Auth (mobile) -->
+    <ng-container *ngIf="(auth.currentUser$ | async) as user; else guestMobile">
+      <div class="d-flex align-items-center gap-3">
+        <ng-container *ngIf="(profile.profile$ | async) as p">
+          <img *ngIf="p.avatarUrl" [src]="p.avatarUrl" alt="Avatar" class="offcanvas-avatar">
+          <i *ngIf="!p.avatarUrl" class="fa-solid fa-user-circle fs-4"></i>
+          <div class="fw-semibold">{{ p.name || user.email }}</div>
+        </ng-container>
+      </div>
+      <div class="d-grid gap-2 mt-2">
+        <a class="btn btn-light" data-bs-dismiss="offcanvas" routerLink="/profile"><i class="fa-regular fa-id-badge me-2"></i>Profile</a>
+        <a class="btn btn-light" data-bs-dismiss="offcanvas" routerLink="/library"><i class="fa-solid fa-book me-2"></i>My Library</a>
+        <button class="btn btn-outline-danger" (click)="logout()"><i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Log out</button>
+      </div>
+    </ng-container>
+    <ng-template #guestMobile>
+      <div class="d-grid gap-2">
+        <a class="btn btn-light" data-bs-dismiss="offcanvas" routerLink="/login"><i class="fa-solid fa-right-to-bracket me-2"></i>Login</a>
+        <a class="btn btn-warning text-white fw-bold" data-bs-dismiss="offcanvas" routerLink="/register">Create Account</a>
+      </div>
+    </ng-template>
+  </div>
+</div>

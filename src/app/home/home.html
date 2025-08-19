@@ -1,0 +1,272 @@
+<section class="hero-section d-flex align-items-center text-white">
+  <div class="container text-start hero-content">
+    <div class="row">
+      <div class="col-md-6">
+        <h1 class="display-4 fw-bold">
+          <i class="fa-solid fa-unlock-keyhole"></i> Unlock Your Reading Journey with <br> <span class="hero-only">"LitLoom"</span>
+        </h1>
+        <p class="lead mt-4">
+          <i class="fa-solid fa-star"></i> Build habits, Discover books, Achieve your goals, and Buy the books that inspire you.
+        </p>
+        <div class="mt-5 hero-btn">
+          <a routerLink="/register" routerLinkActive="active" class="btn btn-lg me-5" role="button" aria-label="Start Reading with LitLoom">
+          <i class="fa-solid fa-book"></i> Start Reading</a>
+          <a routerLink="/store" routerLinkActive="active" class="btn btn-lg"><i class="fa-solid fa-store"></i> Visit the Store</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section
+  id="about"
+  class="about-v2 position-relative"
+  aria-labelledby="aboutV2Heading"
+  data-aos="flip-left"
+  data-aos-duration="2000">
+  <div class="container py-5 py-lg-6">
+    <div class="row align-items-center g-4 g-lg-5">
+      <div class="col-12 col-lg-6 order-2 order-lg-1">
+        <div class="about-card-v2">
+          <span class="about-eyebrow">Why LitLoom</span>
+          <h2 id="aboutV2Heading" class="about-title mb-3">
+            Read better. <span class="about-title-accent">Feel smarter.</span>
+          </h2>
+          <p class="about-body mb-4">
+            LitLoom is your cozy corner to fall in love with reading again —
+            track goals, explore gems, build your library, and even buy the books that speak to you.
+          </p>
+          <div class="about-features mb-4">
+            <div class="feature-item">
+              <i class="fa-solid fa-bullseye"></i>
+              <div>Smart goals</div>
+            </div>
+            <div class="feature-item">
+              <i class="fa-solid fa-book-open"></i>
+              <div>Curated picks</div>
+            </div>
+            <div class="feature-item">
+              <i class="fa-solid fa-layer-group"></i>
+              <div>Your library</div>
+            </div>
+            <div class="feature-item">
+              <i class="fa-solid fa-cart-shopping"></i>
+              <div>Buy easily</div>
+            </div>
+          </div>
+          <div class="d-flex flex-wrap gap-2">
+            <a routerLink="/login" class="btn about-cta-v2">Sign In</a>
+            <a routerLink="/register" class="btn about-ghost-v2">Sign Up</a>
+          </div>
+          <div class="about-stats mt-4">
+            <div class="stat">
+              <div class="stat-num">2,400+</div>
+              <div class="stat-label">Books browsed</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">800+</div>
+              <div class="stat-label">Goals completed</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">1,200+</div>
+              <div class="stat-label">Libraries built</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-6 order-1 order-lg-2">
+        <figure class="about-visual">
+          <img src="../../assets/images/test4.png" alt="Reader with books illustration">
+          <figcaption class="visually-hidden">LitLoom — discover, track, and enjoy your reading journey.</figcaption>
+          <div class="badge-floating badge-top-left">
+            <i class="fa-solid fa-star"></i> Reader’s choice
+          </div>
+          <div class="badge-floating badge-bottom-right">
+            Since 2025
+          </div>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+ <section class="features-how-section py-5">
+  <div class="container only-title text-center">
+    <h2 class="section-title">Discover Your Next Chapter</h2>
+    <div class="decorative-line mb-5">
+      <span></span>
+      <i class="fa-solid fa-book-open-reader mx-3"></i>
+      <span></span>
+    </div>
+    <div class="row mb-5">
+      <div class="col-md-4 mb-4" data-aos="zoom-in-right" data-aos-duration="300">
+        <div class="feature-card p-4">
+          <i class="fa-solid fa-book-open icon mb-3"></i>
+          <h4 class="fw-bold">Explore Books</h4>
+          <p>Discover curated book picks matched to your interests.</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4" data-aos="zoom-in-down" data-aos-duration="900">
+        <div class="feature-card p-4">
+          <i class="fa-solid fa-bullseye icon mb-3"></i>
+          <h4 class="fw-bold">Track Goals</h4>
+          <p>Set reading goals and monitor your progress effortlessly.</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4" data-aos="zoom-in-left" data-aos-duration="600">
+        <div class="feature-card p-4">
+          <i class="fa-solid fa-cart-shopping icon mb-3"></i>
+          <h4 class="fw-bold">Collect Favorites</h4>
+          <p>Purchase books and grow your personal digital library.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="testimonial-section py-5 text-center" data-aos="fade-up" data-aos-duration="1000">
+  <h2 class="section-title only-title mb-4">What Readers Say</h2>
+  <div class="decorative-line mb-5">
+    <span></span>
+    <i class="fa-solid fa-quote-left mx-3"></i>
+    <span></span>
+  </div>
+  <div class="slider-container overflow-hidden">
+  <div class="testimonial-slider continuous-slider">
+    <div
+      class="testimonial-card"
+      *ngFor="let t of testimonials"
+      data-aos="zoom-in">
+      <div class="card-inner p-4 shadow">
+        <img [src]="t.img" class="testimonial-img mb-3" alt="Profile" />
+        <p class="testimonial-text fst-italic">"{{ t.text }}"</p>
+        <h5 class="mb-0 fw-bold">{{ t.name }}</h5>
+        <small class="text-muted">{{ t.role }}</small>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<section class="contact-newsletter-section py-5 text-center" id="contact">
+  <h2 class="section-title only-title mb-2">Keep in Touch</h2>
+  <div class="decorative-line mb-5" aria-hidden="true">
+    <span></span>
+    <i class="fa-solid fa-envelope mx-3"></i>
+    <span></span>
+  </div>
+  <div class="container contact-only" data-aos="zoom-out-up" data-aos-duration="600">
+    <div class="contact-card">
+      <p class="section-subtitle mb-4">We’d love to hear your thoughts, ideas, or book requests.</p>
+      <form class="row g-3 justify-content-center contact-form" novalidate>
+        <div class="col-md-6">
+          <div class="field">
+            <i class="fa-solid fa-user icon-left" aria-hidden="true"></i>
+            <input type="text" class="form-control" placeholder="Your Name" aria-label="Your Name" required />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="field">
+            <i class="fa-solid fa-at icon-left" aria-hidden="true"></i>
+            <input type="email" class="form-control" placeholder="Your Email" aria-label="Your Email" required />
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="field">
+            <i class="fa-solid fa-message icon-left" aria-hidden="true"></i>
+            <textarea class="form-control" rows="4" placeholder="Your Message or Feedback" aria-label="Your Message" required></textarea>
+          </div>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn contact-cta px-4">
+            <i class="fa-solid fa-paper-plane me-1"></i>
+            Send Message
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+<div class="footer-wave" aria-hidden="true">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+  <path d="M0,40 C240,100 480,0 720,40 C960,80 1200,10 1440,40 L1440,80 L0,80 Z"
+        fill="#fdf9f2"></path></svg>
+</div>
+<footer class="litloom-footer text-white py-5" id="footer">
+  <div class="container">
+    <div class="row gy-4 align-items-start">
+      <div class="col-lg-4 col-md-6">
+        <div class="footer-brand">
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <img src="../../assets/images/logo-icon.png" class="footer-logo" alt="LitLoom logo">
+            <h4 class="fw-bold mb-0 text-warning">LitLoom</h4>
+          </div>
+          <p class="small mb-3">
+            Your digital companion for reading, tracking habits, and growing your library one book at a time.
+          </p>
+          <div class="social-wrap">
+            <span class="text-uppercase small text-warning d-block mb-2">Follow Us</span>
+            <div class="d-flex gap-3">
+              <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social-icon" aria-label="Twitter / X"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="social-icon" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6">
+        <h6 class="text-uppercase text-warning mb-3">Quick Links</h6>
+        <ul class="list-unstyled footer-links">
+          <li><a class="footer-link" routerLink="/home">Home</a></li>
+          <li><a class="footer-link" routerLink="/store">Store</a></li>
+          <li><a class="footer-link" routerLink="/library">My Library</a></li>
+          <li><a class="footer-link" routerLink="/tracker">Tracker</a></li>
+          <li><a class="footer-link" routerLink="/goals">Goals</a></li>
+          <li><a class="footer-link" routerLink="/stats">Stats</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <h6 class="text-uppercase text-warning mb-3">Contact</h6>
+        <ul class="list-unstyled footer-contact">
+          <li class="d-flex align-items-start gap-2">
+            <i class="fa-solid fa-location-dot mt-1 opacity-75"></i>
+            <span>New Cairo, Egypt</span>
+          </li>
+          <li class="d-flex align-items-start gap-2">
+            <i class="fa-solid fa-envelope mt-1 opacity-75"></i>
+            <a class="footer-link" href="mailto:support@litloom.app">support@litloom.app</a>
+          </li>
+          <li class="d-flex align-items-start gap-2">
+            <i class="fa-solid fa-phone mt-1 opacity-75"></i>
+            <a class="footer-link" href="tel:+201234567890">+20 123 456 7890</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <h6 class="text-uppercase text-warning mb-3">Stay in the Loop</h6>
+        <p class="small mb-3">Get tips, reading challenges, and store updates. No spam — promise.</p>
+        <form class="footer-form" action="#" method="post" aria-label="Subscribe to newsletter">
+          <label for="newsletter-email" class="visually-hidden">Email</label>
+          <input id="newsletter-email" type="email" class="form-control footer-input" placeholder="Enter your email" required>
+          <button type="submit" class="btn footer-btn mt-2" aria-label="Subscribe">
+            <i class="fa-solid fa-paper-plane"></i> Subscribe
+          </button>
+        </form>
+        <div class="trust-badges mt-3">
+          <span class="badge-pill"><i class="fa-solid fa-shield-halved"></i> Secure</span>
+          <span class="badge-pill"><i class="fa-solid fa-check"></i> No spam</span>
+        </div>
+      </div>
+    </div>
+    <hr class="footer-divider my-4">
+    <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+      <div class="small">
+        &copy; 2025 <span class="text-warning">LitLoom</span>. All rights reserved.
+      </div>
+      <div class="small">
+        <a href="#" class="footer-link me-3">Privacy</a>
+        <a href="#" class="footer-link me-3">Terms</a>
+        <a href="#top" class="footer-link back-to-top">
+          <i class="fa-solid fa-arrow-up"></i> Back to top
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

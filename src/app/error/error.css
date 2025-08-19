@@ -1,0 +1,169 @@
+/* =========================
+   Not Found (404) Page
+   ========================= */
+
+/* Full-bleed wrapper */
+.nf {
+  position: relative;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 48px 16px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #2d4a4a, #1e3838);
+}
+
+/* Soft grid texture */
+.nf .grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 28px 28px, 28px 28px;
+  mask-image: radial-gradient(ellipse at 40% 20%, #000 40%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Abstract blobs */
+.nf .blob {
+  position: absolute;
+  filter: blur(40px);
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.nf .b1 {
+  width: 420px;
+  height: 420px;
+  background: #f6a125;
+  top: -60px;
+  right: -60px;
+  border-radius: 50%;
+}
+
+.nf .b2 {
+  width: 500px;
+  height: 500px;
+  background: #46c3be;
+  bottom: -120px;
+  left: -120px;
+  border-radius: 50%;
+}
+
+/* Card */
+.card {
+    margin-top: 100px;
+}
+.nf .card {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  width: 100%;
+  padding: 28px 28px 24px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  /* Center all content in the card */
+  text-align: center;
+  display: grid;
+  justify-items: center;
+}
+
+/* Big “404” code */
+.nf .code {
+  font-size: clamp(56px, 12vw, 120px);
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  background: linear-gradient(90deg, #fdb557, #fdaf3a, #f6a125);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 10px 30px rgba(253, 175, 58, 0.25);
+  margin-bottom: 6px;
+}
+
+/* Title + copy */
+.nf .title {
+  margin: 0 0 6px;
+  font-size: clamp(20px, 4vw, 28px);
+  color: #1d2626;
+  max-width: 48ch;
+}
+
+.nf .sub {
+  margin: 0 0 16px;
+  color: #6b7a7a;
+  max-width: 60ch;
+}
+
+/* Actions (buttons container) */
+.nf .actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+  justify-content: center; /* center the buttons row */
+  margin-right: 100px;
+
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #f7fbfb;
+  color: #1d2626;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 0.06s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.btn:hover {
+  background: #fff2d9;
+  border-color: rgba(0, 0, 0, 0.14);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn.primary {
+  background: #fdaf3a;
+  color: #1d1d1d;
+  border-color: transparent;
+}
+
+.btn.primary:hover {
+  filter: brightness(1.02);
+  box-shadow: 0 10px 20px rgba(253, 175, 58, 0.35);
+}
+
+.btn.outline {
+  background: #ffffff;
+}
+
+.btn.ghost {
+  background: transparent;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* Focus style */
+.btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(253, 175, 58, 0.35);
+}

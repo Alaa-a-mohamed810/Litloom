@@ -1,0 +1,109 @@
+<section class="profile-page">
+  <!-- Decorative Header with layered SVG waves -->
+  <header class="hero">
+    <div class="hero-gradient"></div>
+
+    <!-- Layered Waves -->
+    <svg class="wave back" viewBox="0 0 1440 180" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,64 C240,128 480,0 720,48 C960,96 1200,176 1440,112 L1440,180 L0,180 Z" fill="rgba(255,255,255,0.16)"></path>
+    </svg>
+    <svg class="wave mid" viewBox="0 0 1440 180" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,120 C180,160 420,40 720,80 C1080,120 1230,160 1440,120 L1440,180 L0,180 Z" fill="rgba(255,255,255,0.28)"></path>
+    </svg>
+    <svg class="wave front" viewBox="0 0 1440 180" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,140 C200,180 420,90 720,120 C1040,154 1200,170 1440,150 L1440,180 L0,180 Z" fill="#ffffff"></path>
+    </svg>
+
+    
+  </header>
+
+  <!-- Abstract background blobs -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <!-- Profile Card -->
+  <div class="profile-container">
+    <!-- Left: Avatar Panel -->
+    <aside class="profile-sidebar">
+      <div class="avatar-stack">
+        <div class="avatar-ring">
+          <div class="avatar">
+            <ng-container *ngIf="avatarPreview; else noAvatar">
+              <img [src]="avatarPreview!" alt="Avatar preview">
+            </ng-container>
+            <ng-template #noAvatar>
+              <i class="fa-regular fa-user"></i>
+            </ng-template>
+
+            <div class="avatar-loading" *ngIf="loadingImage">
+              <div class="spinner"></div>
+            </div>
+          </div>
+        </div>
+
+        <label class="btn action upload">
+          <i class="fa-solid fa-camera"></i>
+          <span>Upload Photo</span>
+          <input type="file" accept="image/*" (change)="onFileChosen($event)" hidden>
+        </label>
+
+        <button class="btn action ghost" type="button" (click)="removeAvatar()" [disabled]="!avatarPreview">
+          <i class="fa-solid fa-trash"></i>
+          <span>Remove</span>
+        </button>
+
+        <!-- Visual badges -->
+        <div class="badges" aria-hidden="true">
+          <span class="badge"><i class="fa-regular fa-star"></i> Member</span>
+          <span class="badge"><i class="fa-regular fa-bookmark"></i> Reader</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Right: Profile Form -->
+    <main class="profile-main">
+      <div class="section-head">
+        <h2 class="title">Profile Details</h2>
+        <p class="subtitle" *ngIf="auth.currentUser as u">Signed in as <b>{{ u.email }}</b></p>
+      </div>
+
+      <!-- Optional quick stats (purely visual) -->
+      <ul class="quick-stats" aria-hidden="true">
+        <li><span class="num">24</span><span class="label">Books</span></li>
+        <li><span class="num">6</span><span class="label">This Month</span></li>
+        <li><span class="num">72%</span><span class="label">Goal</span></li>
+      </ul>
+
+      <form (ngSubmit)="save()" autocomplete="off" class="profile-form">
+        <div class="field floating">
+          <input
+            id="displayName"
+            class="form-control"
+            type="text"
+            [(ngModel)]="name"
+            name="name"
+            placeholder=" " />
+          <label for="displayName">Display name</label>
+        </div>
+
+        <!-- Purely visual textarea (not bound) -->
+        <div class="field floating tall">
+          <textarea id="bio" class="form-control form-textarea" rows="4" placeholder=" "></textarea>
+          <label for="bio">Bio (optional)</label>
+        </div>
+
+        <div class="actions">
+          <button class="btn primary" type="submit">
+            <i class="fa-solid fa-floppy-disk"></i> Save changes
+          </button>
+          <button class="btn outline" type="button" (click)="clear()">
+            <i class="fa-solid fa-eraser"></i> Clear
+          </button>
+        </div>
+
+        <p class="hint">Your updates apply instantly to your LitLoom account.</p>
+      </form>
+    </main>
+  </div>
+</section>

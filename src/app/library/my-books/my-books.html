@@ -1,0 +1,113 @@
+<section class="mb">
+  <!-- Top bar -->
+  <div class="mb__bar">
+    <!-- Left: filters -->
+    <div class="mb__filters">
+      <button class="mb__tab" [class.mb__tab--active]="(filter$ | async) === 'all'"       (click)="setFilter('all')">All</button>
+      <button class="mb__tab" [class.mb__tab--active]="(filter$ | async) === 'reading'"   (click)="setFilter('reading')">Reading</button>
+      <button class="mb__tab" [class.mb__tab--active]="(filter$ | async) === 'finished'"  (click)="setFilter('finished')">Finished</button>
+      <button class="mb__tab" [class.mb__tab--active]="(filter$ | async) === 'unread'"    (click)="setFilter('unread')">Unread</button>
+      <button class="mb__tab" [class.mb__tab--active]="(filter$ | async) === 'favorites'" (click)="setFilter('favorites')">Favorites</button>
+    </div>
+
+    <!-- Middle: Add new -->
+    <div class="mb__addmid">
+      <button class="mb__tab special" type="button" (click)="addNewBook()">
+        {{ showAdd ? 'Close' : '+ Add New Book' }}
+      </button>
+    </div>
+
+    <!-- Right: chips -->
+    <div class="mb__chips" *ngIf="counts$ | async as c">
+      <span class="mb__chip"><b>{{ c.total }}</b> Total</span>
+      <span class="mb__chip"><b>{{ c.reading }}</b> Reading</span>
+      <span class="mb__chip"><b>{{ c.finished }}</b> Finished</span>
+      <span class="mb__chip"><b>{{ c.favorites }}</b> Favorites</span>
+    </div>
+  </div>
+
+  <!-- ↓↓↓ Dropdown form (appears below the bar) -->
+  <form class="mb__dropdown" *ngIf="showAdd" (ngSubmit)="submitNewBook()" novalidate autocomplete="off">
+    <div class="mb__row">
+      <div class="mb__field">
+        <label>Title <span class="req">*</span></label>
+        <input type="text" [(ngModel)]="newBook.title" name="title" required />
+      </div>
+
+      <div class="mb__field">
+        <label>Author</label>
+        <input type="text" [(ngModel)]="newBook.author" name="author" />
+      </div>
+    </div>
+
+    <div class="mb__row">
+      <div class="mb__field">
+        <label>Upload Cover Image</label>
+        <input #fileInput type="file" accept="image/*" (change)="onFileChosen($event)" name="coverFile" />
+      </div>
+
+      <div class="mb__preview" *ngIf="previewDataUrl || newBook.coverUrl">
+        <div class="mb__cover">
+          <img
+            [src]="previewDataUrl || (newBook.coverUrl || '')"
+            width="300" height="400" alt="Cover preview"
+            style="width:100%;height:100%;object-fit:cover;border-radius:12px;" />
+        </div>
+      </div>
+    </div>
+
+    <div class="mb__actionsline">
+      <button class="mb__tab" type="submit" [class.is-disabled]="!(newBook.title?.trim())"> Add to My Library </button>
+      <button class="mb__tab" type="button" (click)="showAdd=false">Cancel</button>
+    </div>
+  </form>
+
+  <!-- Empty state -->
+  <div class="mb__empty" *ngIf="(filtered$ | async)?.length === 0">
+    <p>No books found in this filter.</p>
+  </div>
+
+  <!-- Grid -->
+  <div class="mb__grid" *ngIf="(filtered$ | async) as list">
+    <article class="mb__card" *ngFor="let b of list" (click)="openDetails(b)">
+      <div class="mb__cover">
+        <ng-container *ngIf="b.coverUrl; else noCover">
+          <img
+            [src]="b.coverUrl"
+            width="300" height="400" alt="{{ b.title }}"
+            style="width:100%;height:100%;object-fit:cover;border-radius:12px;" />
+        </ng-container>
+        <ng-template #noCover>
+          <div class="mb__nocover" aria-label="No cover available">
+            📘
+          </div>
+        </ng-template>
+      </div>
+
+      <h3 class="mb__title">{{ b.title }}</h3>
+      <p class="mb__author">{{ b.author || '—' }}</p>
+
+      <div style="display:flex; gap:8px; margin-top:4px; flex-wrap: wrap;">
+        <button class="mb__btn" type="button" (click)="$event.stopPropagation(); toggleFavorite(b.id)">
+          {{ b.favorite ? 'Unfavorite' : 'Favorite' }}
+        </button>
+        <button class="mb__btn" type="button" (click)="$event.stopPropagation(); setStatus(b.id, 'reading')">
+          Reading
+        </button>
+        <button class="mb__btn" type="button" (click)="$event.stopPropagation(); setStatus(b.id, 'finished')">
+          Finished
+        </button>
+        <button class="mb__btn" type="button" (click)="$event.stopPropagation(); remove(b.id)">
+          Remove
+        </button>
+      </div>
+    </article>
+  </div>
+
+  <!-- Details dialog -->
+  <app-book-dialog
+    *ngIf="selectedBook"
+    [book]="selectedBook"
+    (close)="closeDetails()">
+  </app-book-dialog>
+</section>

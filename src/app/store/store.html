@@ -1,0 +1,79 @@
+<div class="store-container">
+  <h2 class="section-title">Explore Our Bookstore</h2>
+  <div class="decorative-line mb-5">
+    <span></span>
+    <i class="fa-brands fa-searchengin mx-3"></i>
+    <span></span>
+  </div>
+
+  <!-- Single Search Bar -->
+  <div class="filter-bar">
+    <input type="text"
+           [(ngModel)]="searchTerm"
+           (input)="searchBooks()"
+           placeholder="Search by Title, Genre, or Author">
+    <button (click)="searchBooks()">🔍 Search</button>
+  </div>
+
+  <!-- Book Cards -->
+  <div class="book-grid">
+  <div class="book-card"
+       *ngFor="let book of paginatedBooks()"
+       (click)="openDetails(book)">   <!-- ✅ opens dialog -->
+    <img [src]="book.image" [alt]="book.title" (error)="replaceWithPlaceholder($event, book)">
+    <div class="book-info">
+      <h3>{{ book.title }}</h3>
+      <p class="genre">{{ book.genre }}</p>
+      <p class="author">By: {{ book.authors.join(', ') }}</p>
+      <p class="description">{{ book.description }}</p>
+      <p class="price">${{ book.price }}</p>
+    </div>
+    <!-- <div class="card-actions">
+      <button class="btn-cart"    (click)="$event.stopPropagation(); addToCart(book)">🛒 Add to Cart</button>
+      <button class="btn-library" (click)="$event.stopPropagation(); addToLibrary(book)">📚 Add to Library</button>
+    </div> -->
+
+
+    <div class="card-actions">
+  <button
+    type="button"
+    class="btn-cart"
+    (click)="$event.stopPropagation(); addToCart(book)"
+    aria-label="Add to cart"
+  >
+    <i class="fas fa-cart-shopping me-1"></i>
+    Add to Cart
+  </button>
+
+  <button
+    type="button"
+    class="btn-library"
+    (click)="$event.stopPropagation(); addToLibrary(book)"
+    aria-label="Add to library"
+  >
+    <i class="fa-solid fa-book me-1"></i>
+    Add to Library
+  </button>
+</div>
+
+  </div>
+</div>
+
+<!-- Dialog at template root -->
+<app-book-dialog
+  *ngIf="selectedBook"
+  [book]="selectedBook"
+  (close)="closeDetails()">
+</app-book-dialog>
+
+  <!-- Pagination -->
+  <div class="pagination">
+    <button [disabled]="currentPage === 1" (click)="goToPage(currentPage - 1)">⬅</button>
+    <button *ngFor="let page of [].constructor(totalPages()); let i = index"
+            [class.active]="currentPage === i+1"
+            (click)="goToPage(i+1)">
+      {{ i+1 }}
+    </button>
+    <button [disabled]="currentPage === totalPages()" (click)="goToPage(currentPage + 1)">➡</button>
+  </div>
+</div>
