@@ -5,11 +5,13 @@
 /* Full-bleed wrapper */
 .nf {
   position: relative;
-  height: 100vh;
+  min-height: 100dvh;
+  height: auto;
   display: grid;
   place-items: center;
-  padding: 48px 16px;
-  overflow: hidden;
+  padding: clamp(72px, 12vh, 120px) 16px calc(24px + env(safe-area-inset-bottom));
+  overflow-x: hidden;
+  overflow-y: auto;
   background: linear-gradient(180deg, #2d4a4a, #1e3838);
 }
 
@@ -56,6 +58,7 @@
     margin-top: 100px;
 }
 .nf .card {
+  margin-top: 0;
   position: relative;
   z-index: 1;
   max-width: 720px;
@@ -166,4 +169,55 @@
 .btn:focus-visible {
   outline: none;
   box-shadow: 0 0 0 3px rgba(253, 175, 58, 0.35);
+}
+
+
+@media (max-width: 560px) {
+  .nf .actions {
+    display: grid;
+    grid-template-columns: 1fr;   /* stack buttons */
+    gap: 10px;
+    width: 100%;
+  }
+  .nf .actions .btn {
+    width: 100%;
+    height: 44px;
+    border-radius: 12px;
+    font-size: 15px;
+    justify-content: center;
+  }
+}
+
+/* 4) Card & text sizing for small devices */
+@media (max-width: 560px) {
+  .nf .card {
+    max-width: 560px;
+    padding: 22px 18px 18px;
+    border-radius: 16px;
+  }
+  .nf .title { font-size: clamp(18px, 5vw, 22px); }
+  .nf .sub   { font-size: 14px; }
+}
+
+/* 5) Soften / shrink background blobs on phones */
+@media (max-width: 560px) {
+  .nf .blob { filter: blur(34px); opacity: 0.22; }
+  .nf .b1 { width: 260px; height: 260px; top: -40px; right: -60px; }
+  .nf .b2 { width: 300px; height: 300px; bottom: -80px; left: -80px; }
+}
+@media (max-width: 360px) {
+  .nf .b1, .nf .b2 { display: none; }   /* keep it clean on ultra-narrow */
+}
+
+/* 6) Keep the grid texture subtle on mobile */
+@media (max-width: 560px) {
+  .nf .grid {
+    background-size: 24px 24px, 24px 24px;
+    mask-image: radial-gradient(ellipse at 50% 20%, #000 40%, transparent 70%);
+  }
+}
+
+/* 7) Big 404 code is already responsive via clamp(); add a tiny tweak */
+@media (max-width: 360px) {
+  .nf .code { letter-spacing: 0.02em; }
 }

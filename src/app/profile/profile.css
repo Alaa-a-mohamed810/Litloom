@@ -1,9 +1,11 @@
 /* ---------- Page Scaffold with Curved Header ---------- */
 .profile-page {
   position: relative;
-  height: 100vh;
+  min-height: 100dvh;
+  height: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   background: #f7f6f4;
-  overflow: hidden;
   font-family: "Inter", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
 }
 
