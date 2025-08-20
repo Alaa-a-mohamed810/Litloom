@@ -1,0 +1,404 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "Pride and Prejudice",
+      "genre": "Romance",
+      "authors": ["Jane Austen"],
+      "isbn": "9780141439518",
+      "description": "A witty exploration of manners and matrimonial pursuits in Regency England.",
+      "price": 11.99,
+      "image": "https://covers.openlibrary.org/b/isbn/9780141439518-M.jpg"
+    },
+    {
+      "id": 2,
+      "title": "1984",
+      "genre": "Dystopian",
+      "authors": ["George Orwell"],
+      "isbn": "9780451524935",
+      "description": "A chilling portrayal of surveillance and totalitarian control.",
+      "price": 9.99,
+      "image": "https://covers.openlibrary.org/b/isbn/9780451524935-M.jpg"
+    },
+    {
+      "id": 3,
+      "title": "To Kill a Mockingbird",
+      "genre": "Historical Fiction",
+      "authors": ["Harper Lee"],
+      "isbn": "9780061120084",
+      "description": "A courtroom drama and childhood story against the backdrop of racial tensions in the South.",
+      "price": 14.49,
+      "image": "https://covers.openlibrary.org/b/isbn/9780061120084-M.jpg"
+    },
+    {
+      "id": 4,
+      "title": "The Hobbit",
+      "genre": "Fantasy",
+      "authors": ["J.R.R. Tolkien"],
+      "isbn": "9780345339683",
+      "description": "Bilbo embarks on an adventurous quest across Middle-earth.",
+      "price": 13.50,
+      "image": "https://covers.openlibrary.org/b/isbn/9780345339683-M.jpg"
+    },
+    {
+      "id": 5,
+      "title": "A Tale of Two Cities",
+      "genre": "Historical Fiction",
+      "authors": ["Charles Dickens"],
+      "isbn": "9780141439600",
+      "description": "A powerful tale of love, redemption, and revolution in London and Paris.",
+      "price": 10.99,
+      "image": "https://covers.openlibrary.org/b/isbn/9780141439600-M.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Moby-Dick",
+      "genre": "Adventure",
+      "authors": ["Herman Melville"],
+      "isbn": "9780142437247",
+      "description": "Captain Ahab’s obsessive hunt for the white whale.",
+      "price": 15.00,
+      "image": "https://covers.openlibrary.org/b/isbn/9780142437247-M.jpg"
+    },
+    {
+      "id": 7,
+      "title": "War and Peace",
+      "genre": "Epic",
+      "authors": ["Leo Tolstoy"],
+      "isbn": "9780199232765",
+      "description": "An expansive canvas of Russian society amid Napoleonic upheaval.",
+      "price": 18.99,
+      "image": "https://covers.openlibrary.org/b/isbn/9780199232765-M.jpg"
+    },
+    {
+      "id": 8,
+      "title": "The Great Gatsby",
+      "genre": "Classic",
+      "authors": ["F. Scott Fitzgerald"],
+      "isbn": "9780743273565",
+      "description": "A tragic look at the illusions of wealth and love in the Jazz Age.",
+      "price": 12.49,
+      "image": "https://covers.openlibrary.org/b/isbn/9780743273565-M.jpg"
+    },
+    {
+      "id": 9,
+      "title": "The Catcher in the Rye",
+      "genre": "Coming-of-Age",
+      "authors": ["J.D. Salinger"],
+      "isbn": "9780316769488",
+      "description": "Holden Caulfield’s candid reflections on teenage angst in NYC.",
+      "price": 10.75,
+      "image": "https://covers.openlibrary.org/b/isbn/9780316769488-M.jpg"
+    },
+    {
+      "id": 10,
+      "title": "Jane Eyre",
+      "genre": "Romance",
+      "authors": ["Charlotte Brontë"],
+      "isbn": "9780141441146",
+      "description": "An orphan’s journey toward independence and love in Victorian England.",
+      "price": 12.30,
+      "image": "https://covers.openlibrary.org/b/isbn/9780141441146-M.jpg"
+    },
+    {
+      "id": 11,
+      "title": "The Odyssey",
+      "genre": "Epic",
+      "authors": ["Homer"],
+      "isbn": "9780140268867",
+      "description": "Odysseus’s long and perilous voyage home from the Trojan War.",
+      "price": 14.25,
+      "image": "https://covers.openlibrary.org/b/isbn/9780140268867-M.jpg"
+    },
+    {
+      "id": 12,
+      "title": "Les Misérables",
+      "genre": "Historical Fiction",
+      "authors": ["Victor Hugo"],
+      "isbn": "9780451419439",
+      "description": "A sweeping tale of injustice and redemption in post-revolutionary France.",
+      "price": 17.50,
+      "image": "https://covers.openlibrary.org/b/isbn/9780451419439-M.jpg"
+    },
+    {
+      "id": 13,
+      "title": "Crime and Punishment",
+      "genre": "Psychological Fiction",
+      "authors": ["Fyodor Dostoevsky"],
+      "isbn": "9780140449136",
+      "description": "A young man commits a crime and confronts his moral guilt.",
+      "price": 11.80,
+      "image": "https://covers.openlibrary.org/b/isbn/9780140449136-M.jpg"
+    },
+    {
+      "id": 14,
+      "title": "Frankenstein",
+      "genre": "Gothic",
+      "authors": ["Mary Shelley"],
+      "isbn": "9780486282114",
+      "description": "A scientist’s creation of life grapples with its unintended consequences.",
+      "price": 8.90,
+      "image": "https://covers.openlibrary.org/b/isbn/9780486282114-M.jpg"
+    },
+    {
+      "id": 15,
+      "title": "Dracula",
+      "genre": "Horror",
+      "authors": ["Bram Stoker"],
+      "isbn": "9780486411095",
+      "description": "The original vampire story of Count Dracula’s invasion of England.",
+      "price": 9.60,
+      "image": "https://covers.openlibrary.org/b/isbn/9780486411095-M.jpg"
+    },
+    {
+      "id": 16,
+      "title": "Fahrenheit 451",
+      "genre": "Dystopian",
+      "authors": ["Ray Bradbury"],
+      "isbn": "9781451673319",
+      "description": "A future where books are banned and firemen burn what they find.",
+      "price": 10.40,
+      "image": "https://covers.openlibrary.org/b/isbn/9781451673319-M.jpg"
+    },
+    {
+      "id": 17,
+      "title": "The Picture of Dorian Gray",
+      "genre": "Philosophical Fiction",
+      "authors": ["Oscar Wilde"],
+      "isbn": "9780141439570",
+      "description": "A man remains youthful while his portrait bears the scars of his sin.",
+      "price": 11.20,
+      "image": "https://covers.openlibrary.org/b/isbn/9780141439570-M.jpg"
+    },
+    {
+      "id": 18,
+      "title": "One Hundred Years of Solitude",
+      "genre": "Magical Realism",
+      "authors": ["Gabriel García Márquez"],
+      "isbn": "9780060883287",
+      "description": "The multi-generational history of the Buendía family in the mythical town of Macondo.",
+      "price": 13.60,
+      "image": "https://covers.openlibrary.org/b/isbn/9780060883287-M.jpg"
+    },
+    {
+      "id": 19,
+      "title": "Brave New World",
+      "genre": "Dystopian",
+      "authors": ["Aldous Huxley"],
+      "isbn": "9780060850524",
+      "description": "A scientifically controlled society where individuality is suppressed.",
+      "price": 13.40,
+      "image": "https://covers.openlibrary.org/b/isbn/9780060850524-M.jpg"
+    },
+    {
+      "id": 20,
+      "title": "The Count of Monte Cristo",
+      "genre": "Adventure",
+      "authors": ["Alexandre Dumas"],
+      "isbn": "9780140449266",
+      "description": "A story of wrongful imprisonment turned into epic revenge and redemption.",
+      "price": 12.50,
+      "image": "https://covers.openlibrary.org/b/isbn/9780140449266-M.jpg"
+    },
+    {
+      "id": 21,
+      "title": "Great Expectations",
+      "genre": "Coming-of-Age",
+      "authors": ["Charles Dickens"],
+      "isbn": "9780141439563",
+      "description": "Pip’s journey from orphan to gentleman, shaped by chance and regret.",
+      "price": 9.75,
+      "image": "https://covers.openlibrary.org/b/isbn/9780141439563-M.jpg"
+    },
+    {
+      "id": 22,
+      "title": "The Brothers Karamazov",
+      "genre": "Philosophical Fiction",
+      "authors": ["Fyodor Dostoevsky"],
+      "isbn": "9780374528379",
+      "description": "A father’s murder sparks deep existential and spiritual questions.",
+      "price": 14.25,
+      "image": "https://covers.openlibrary.org/b/isbn/9780374528379-M.jpg"
+    },
+    {
+      "id": 23,
+      "title": "Siddhartha",
+      "genre": "Philosophy",
+      "authors": ["Hermann Hesse"],
+      "isbn": "9780553208849",
+      "description": "A young man’s spiritual search during the time of the Buddha.",
+      "price": 8.20,
+      "image": "https://covers.openlibrary.org/b/isbn/9780553208849-M.jpg"
+    },
+    {
+      "id": 24,
+      "title": "The Old Man and the Sea",
+      "genre": "Fiction",
+      "authors": ["Ernest Hemingway"],
+      "isbn": "9780684801223",
+      "description": "An epic struggle between an aging fisherman and a marlin.",
+      "price": 6.95,
+      "image": "https://covers.openlibrary.org/b/isbn/9780684801223-M.jpg"
+    },
+    {
+      "id": 25,
+      "title": "The Iliad",
+      "genre": "Epic",
+      "authors": ["Homer"],
+      "isbn": "9780140275360",
+      "description": "The rage of Achilles during the Trojan War.",
+      "price": 9.40,
+      "image": "https://covers.openlibrary.org/b/isbn/9780140275360-M.jpg"
+    },
+    {
+      "id": 26,
+      "title": "Don Quixote",
+      "genre": "Adventure",
+      "authors": ["Miguel de Cervantes"],
+      "isbn": "9780060934347",
+      "description": "A delusional knight-errant and his quest for chivalry.",
+      "price": 11.25,
+      "image": "https://covers.openlibrary.org/b/isbn/9780060934347-M.jpg"
+    },
+    {
+      "id": 27,
+      "title": "Alice's Adventures in Wonderland",
+      "genre": "Fantasy",
+      "authors": ["Lewis Carroll"],
+      "isbn": "9780141192468",
+      "description": "A curious girl’s surreal journey down the rabbit hole.",
+      "price": 7.95,
+      "image": "https://covers.openlibrary.org/b/isbn/9780141192468-M.jpg"
+    },
+    {
+      "id": 28,
+      "title": "Treasure Island",
+      "genre": "Adventure",
+      "authors": ["Robert Louis Stevenson"],
+      "isbn": "9780141192451",
+      "description": "A classic pirate treasure hunt filled with betrayal and heroism.",
+      "price": 8.50,
+      "image": "https://covers.openlibrary.org/b/isbn/9780141192451-M.jpg"
+    },
+    {
+      "id": 29,
+      "title": "Middlemarch",
+      "genre": "Literary Fiction",
+      "authors": ["George Eliot"],
+      "isbn": "9780141196893",
+      "description": "A rich tapestry of life in a provincial English town.",
+      "price": 12.75,
+      "image": "https://covers.openlibrary.org/b/isbn/9780141196893-M.jpg"
+    },
+    {
+      "id": 30,
+      "title": "Mansfield Park",
+      "genre": "Romance",
+      "authors": ["Jane Austen"],  
+      "isbn": "9780141197708",
+      "description": "Fanny Price’s moral strength in a world of social pretensions.",
+      "price": 9.95,
+      "image": "https://covers.openlibrary.org/b/isbn/9780141197708-M.jpg"
+    },
+    {
+      "id": 31,
+      "title": "Vanity Fair",
+      "genre": "Satire",
+      "authors": ["William Makepeace Thackeray"],
+      "isbn": "9780141199542",
+      "description": "An ironic story of social climbers amidst early 19th-century society.",
+      "price": 13.23,
+      "image": "https://covers.openlibrary.org/b/isbn/9780141199542-M.jpg"
+    },
+    {
+      "id": 32,
+      "title": "Bleak House",
+      "genre": "Mystery",
+      "authors": ["Charles Dickens"],
+      "isbn": "9780141198354",
+      "description": "A dark critique of the British legal system entwined with mystery.",
+      "price": 11.50,
+      "image": "https://covers.openlibrary.org/b/isbn/9780141198354-M.jpg"
+    },
+    {
+      "id": 33,
+      "title": "Emma",
+      "genre": "Romance",
+      "authors": ["Jane Austen"],
+      "isbn": "9780141192475",
+      "description": "A matchmaking enthusiast learns love’s lessons the hard way.",
+      "price": 9.50,
+      "image": "https://covers.openlibrary.org/b/isbn/9780141192475-M.jpg"
+    },
+    {
+      "id": 34,
+      "title": "Hard Times",
+      "genre": "Social Criticism",
+      "authors": ["Charles Dickens"],
+      "isbn": "9780141198347",
+      "description": "A piercing critique of industrial-era utilitarianism.",
+      "price": 8.75,
+      "image": "https://covers.openlibrary.org/b/isbn/9780141198347-M.jpg"
+    },
+    {
+      "id": 35,
+      "title": "A Christmas Carol",
+      "genre": "Fantasy",
+      "authors": ["Charles Dickens"],
+      "isbn": "9780141195858",
+      "description": "The timeless holiday tale of Ebenezer Scrooge’s redemption.",
+      "price": 7.75,
+      "image": "https://covers.openlibrary.org/b/isbn/9780141195858-M.jpg"
+    },
+    {
+      "id": 36,
+      "title": "Dr. Jekyll and Mr. Hyde",
+      "genre": "Horror",
+      "authors": ["Robert Louis Stevenson"],
+      "isbn": "9780141439739",
+      "description": "A chilling study of dual identities and suppressed evil.",
+      "price": 8.25,
+      "image": "https://covers.openlibrary.org/b/id/5636187-M.jpg"
+    },
+    {
+      "id": 37,
+      "title": "Romola",
+      "genre": "Historical Fiction",
+      "authors": ["George Eliot"],
+      "isbn": "9780140436937",
+      "description": "A coming-of-age story set in Renaissance Florence.",
+      "price": 12.25,
+      "image": "https://covers.openlibrary.org/b/id/14721416-M.jpg"
+    },
+    {
+      "id": 38,
+      "title": "The Plague",
+      "genre": "Allegory",
+      "authors": ["Albert Camus"],
+      "isbn": "9780141185044",
+      "description": "An allegorical tale of humanism during a plague outbreak.",
+      "price": 10.99,
+      "image": "https://ia801604.us.archive.org/BookReader/BookReaderPreview.php?id=bwb_KU-577-139&itemPath=%2F28%2Fitems%2Fbwb_KU-577-139&server=ia801604.us.archive.org&page=cover_w180_h360.jpg"
+    },
+    {
+      "id": 39,
+      "title": "The Adventures of Tom Sawyer",
+      "genre": "Adventure",
+      "authors": ["Mark Twain"],
+      "isbn": "9780141321103",
+      "description": "Young Tom’s mischievous adventures along the Mississippi.",
+      "price": 7.95,
+      "image": "https://covers.openlibrary.org/b/isbn/9780141321103-M.jpg"
+    },
+    {
+      "id": 40,
+      "title": "The Adventures of Huckleberry Finn",
+      "genre": "Adventure",
+      "authors": ["Mark Twain"],
+      "isbn": "9780142407295",
+      "description": "A young boy and a runaway slave raft down the Mississippi.",
+      "price": 8.45,
+      "image": "https://covers.openlibrary.org/b/isbn/9780142407295-M.jpg"
+    }
+  ]
+}

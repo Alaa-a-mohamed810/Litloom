@@ -39,12 +39,19 @@
           },
           "configurations": {
             "production": {
-              "budgets": [
-                { "type": "initial", "maximumWarning": "1.2mb", "maximumError": "1.4mb" },
-                { "type": "bundle", "name": "styles", "maximumWarning": "380kb", "maximumError": "450kb" },
-                { "type": "anyComponentStyle", "maximumWarning": "16kb", "maximumError": "32kb" }
+              "fileReplacements": [
+             {
+             "replace": "src/environments/environment.ts",
+              "with": "src/environments/environment.prod.ts"
+               }
               ],
-              "outputHashing": "all"
+              "baseHref": "/Litloom/",
+                 "budgets": [
+                 { "type": "initial", "maximumWarning": "1.2mb", "maximumError": "1.4mb" },
+                 { "type": "bundle", "name": "styles", "maximumWarning": "380kb", "maximumError": "450kb" },
+                 { "type": "anyComponentStyle", "maximumWarning": "16kb", "maximumError": "32kb" }
+               ],
+                "outputHashing": "all"
             },
             "development": {
               "optimization": false,
