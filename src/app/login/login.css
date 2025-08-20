@@ -1,11 +1,22 @@
 /* Respect ~100px fixed navbar */
 .auth-hero.rich {
   position: relative;
-  padding-top: 160px;
-  padding-bottom: 72px;
-  height: 100vh;
-  overflow: hidden;
+
+  /* Give space for fixed navbar, but make it fluid */
+  padding-top: clamp(180px, 12vh, 160px);
+
+  /* Let the section grow and scroll instead of clipping */
+  min-height: 100dvh;        /* modern mobile-safe unit */
+  height: auto;              /* override fixed height */
+  overflow-y: auto;          /* was hidden — this is the main fix */
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+
+  /* keep your effects */
   isolation: isolate;
+  padding-bottom: 72px;
+  /* extra bottom safety for iOS home bar */
+  padding-bottom: calc(72px + env(safe-area-inset-bottom));
 }
 
 /* Animated gradient mesh background */
@@ -284,7 +295,7 @@
 /* Social ghost buttons */
 .social-row { display: grid; gap: 10px; grid-template-columns: 1fr 1fr; }
 .social.ghost {
-  height: 44px; border-radius: 12px; border: 1px dashed #d9e2e4; background: #fbfcfd;
+  height: 60px; border-radius: 12px; border: 1px dashed #d9e2e4; background: #fbfcfd;
   font-weight: 700; color: #2b3a3f; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
 }
 .social.ghost:hover { background: #f4f7f8; }
@@ -298,11 +309,14 @@
 }
 @media (max-width: 420px) {
   .auth-hero.rich { padding-top: 110px; }
+  .auth-card.aura { margin-bottom: 12px; border-radius: 22px; }
   .form-head .title { font-size: 26px; }
-  .auth-body { padding: 26px 18px 34px 18px; }
+  .auth-body { padding: 24px 16px 32px 16px; }
   .field .form-control { padding-left: 42px; }
+  .form-head .title { font-size: 24px; }
 }
 
 /* Bootstrap-friendly util */
 .mt-3 { margin-top: 1rem !important; }
 .w-100 { width: 100% !important; }
+html, body { overflow-x: hidden; }
