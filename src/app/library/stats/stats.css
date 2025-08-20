@@ -491,3 +491,134 @@
     grid-template-columns: 1fr;
   }
 }
+/* ===================== Mobile responsiveness add-ons (drop-in) ===================== */
+
+/* Small laptops / tablets */
+@media (max-width: 860px) {
+  .stats-header { padding: 14px; }
+  .panel { padding: 14px; }
+  .panel-head h3 { font-size: 17px; }
+}
+
+/* Large phones / small tablets */
+@media (max-width: 720px) {
+  /* Header stacks */
+  .stats-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    text-align: left;
+  }
+  .head-right {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .btn { padding: 9px 12px; border-radius: 10px; }
+
+  /* KPIs tighten a bit */
+  .kpi-card { min-height: 68px; padding: 12px 14px; }
+  .kpi-card .meta .value { font-size: 22px; }
+
+  /* Compare card */
+  .compare-card { gap: 12px; }
+  .gauge { min-width: 180px; }
+  .gauge-ring { width: 160px; height: 12px; }
+
+  /* Segmented switch wraps nicely */
+  .seg { flex-wrap: wrap; }
+  .seg-btn { flex: 1 1 auto; min-width: 120px; }
+
+  /* Bar charts: slimmer bars & gaps */
+  .bar-chart { gap: 14px; }
+  .bar-chart.w7 { gap: 22px; }
+  .bar { max-width: 28px; flex: 0 0 28px; }
+  .bar-body { height: 150px; }
+
+  /* Donut shrinks */
+  .pie-wrap { gap: 10px; }
+  .pie, .donut { width: 200px; height: 200px; }
+  .donut {
+    mask: radial-gradient(circle 66px at 50% 50%, transparent 66px, #000 67px);
+    -webkit-mask: radial-gradient(circle 66px at 50% 50%, transparent 66px, #000 67px);
+  }
+  .pie .center .big { font-size: 26px; }
+}
+
+/* Phones */
+@media (max-width: 560px) {
+  /* Header buttons become single column */
+  .head-right { grid-template-columns: 1fr; }
+
+  /* KPIs single column already at 640px; just tighten */
+  .kpis { gap: 10px; }
+  .kpi-card { grid-template-columns: 48px 1fr; }
+  .icon { width: 40px; height: 40px; font-size: 16px; }
+
+  /* Compare card centered */
+  .compare-card { text-align: center; }
+  .compare-kpis { grid-template-columns: 1fr; }
+  .gauge { min-width: 150px; }
+  .gauge-ring { width: 140px; height: 12px; }
+  .gauge-text { font-size: 16px; }
+
+  /* Bar charts: tighter still */
+  .bar-chart { gap: 10px; padding: 10px 6px 6px; }
+  .bar-chart.w7 { gap: 16px; }
+  .bar-chart.w12 { gap: 10px; }
+  .bar { max-width: 22px; flex: 0 0 22px; }
+  .bar-body { height: 130px; }
+  .bar-tip { font-size: 11px; top: -20px; }
+
+  /* Donut smaller */
+  .pie, .donut { width: 160px; height: 160px; }
+  .donut {
+    mask: radial-gradient(circle 52px at 50% 50%, transparent 52px, #000 53px);
+    -webkit-mask: radial-gradient(circle 52px at 50% 50%, transparent 52px, #000 53px);
+  }
+  .legend li { padding: 8px; }
+  .legend .name { font-size: 13px; }
+}
+
+/* Compact phones */
+@media (max-width: 420px) {
+  .stats-shell { padding: 0 12px 28px; }
+
+  /* Bars get very slim; hide tips to avoid overlap */
+  .bar-chart { gap: 8px; }
+  .bar-chart.w7 { gap: 12px; }
+  .bar-chart.w12 { gap: 8px; }
+  .bar { max-width: 18px; flex: 0 0 18px; }
+  .bar-body { height: 120px; }
+  .bar-tip { display: none; }
+
+  /* Donut + gauge compact */
+  .pie, .donut { width: 140px; height: 140px; }
+  .donut {
+    mask: radial-gradient(circle 46px at 50% 50%, transparent 46px, #000 47px);
+    -webkit-mask: radial-gradient(circle 46px at 50% 50%, transparent 46px, #000 47px);
+  }
+  .pie .center .big { font-size: 22px; }
+  .gauge { min-width: 130px; }
+  .gauge-ring { width: 120px; height: 10px; }
+
+  /* Buttons full-width in header */
+  .head-right .btn { width: 100%; }
+}
+
+/* Very small devices */
+@media (max-width: 360px) {
+  .head-left h1 { font-size: 20px; }
+  .head-left p { font-size: 13px; }
+
+  .kpi-card .meta .value { font-size: 20px; }
+  .panel { padding: 12px; }
+}
+
+/* Safety: prevent horizontal scroll from any child */
+.stats-shell,
+.stats-header,
+.panel,
+.kpis,
+.grid { max-width: 100%; overflow-wrap: anywhere; }

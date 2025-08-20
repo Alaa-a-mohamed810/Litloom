@@ -411,3 +411,137 @@
   .ring-wrap { margin: 0 auto; }
   .add-panel .form { grid-template-columns: 1fr; }
 }
+
+
+
+/* ============= Mobile-first refinements (drop-in) ============= */
+
+/* Slight tightening for small laptops/tablets */
+@media (max-width: 860px) {
+  .goals-header { padding: 14px; }
+  .legend { flex-wrap: wrap; row-gap: 6px; }
+  .panel { padding: 14px; }
+}
+
+/* Phones & small tablets */
+@media (max-width: 680px) {
+  /* Header stacks */
+  .goals-header {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: left;
+    gap: 12px;
+  }
+  .head-left h1 { font-size: 22px; }
+  .head-left p { font-size: 13px; }
+
+  /* Action buttons become a tidy 2-column grid */
+  .head-right {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .btn.add { margin-left: 0; }
+  .btn { padding: 10px 12px; border-radius: 10px; }
+
+  /* Softer header flare */
+  .header-wave { height: 100px; inset: auto -25% -35% -25%; }
+
+  /* Add panel: single column already at 980px; tighten spacing */
+  .add-panel .form { gap: 10px; }
+  .add-panel .form-actions { margin-top: 12px; }
+
+  /* Goal grid: single column already at 980px */
+  .grid { margin-top: 12px; }
+
+  /* Goal card compaction */
+  .goal-card {
+    grid-template-columns: 1fr;
+    padding: 18px 12px;
+    gap: 10px;
+  }
+
+  /* Ring scales down */
+  .ring-wrap { width: 140px; height: 140px; }
+  .ring      { width: 140px; height: 140px; }
+
+  /* Overlay the "due today" badge on the ring */
+  .due-badge {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    z-index: 3;
+  }
+
+  /* Center labels shrink a bit */
+  .center .pct { font-size: 18px; }
+  .center .kpi { font-size: 12px; }
+  .center .sub {
+    max-width: 130px;
+    white-space: normal;           /* allow wrap on small screens */
+    overflow: hidden;
+  }
+
+  /* Title can wrap to 2 lines on mobile (prevents overflow) */
+  .goal-title {
+    margin-left: 6px;
+    white-space: normal;
+    display: -webkit-box;
+    line-clamp: 2;         /* show up to 2 lines */
+    -webkit-box-orient: vertical;
+  }
+
+  /* Card actions span full width neatly */
+  .actions { justify-content: flex-start; }
+}
+
+/* Compact phones */
+@media (max-width: 480px) {
+  .panel { padding: 12px; }
+
+  /* Header buttons = single column */
+  .head-right {
+    grid-template-columns: 1fr;
+  }
+
+  /* Ring smaller again */
+  .ring-wrap { width: 120px; height: 120px; }
+  .ring      { width: 120px; height: 120px; }
+  .center .pct { font-size: 17px; }
+  .center .kpi { font-size: 12px; }
+  .center .sub { font-size: 11px; max-width: 120px; }
+
+  /* Completed list: actions drop beneath text */
+  .completed .row {
+    grid-template-columns: 48px 1fr;
+    align-items: start;
+  }
+  .completed .row .actions {
+    grid-column: 1 / -1;
+    justify-content: flex-end;
+  }
+
+  /* Empty state buttons stack */
+  .cta-row { flex-direction: column; gap: 8px; }
+  .cta-row .btn { width: 100%; }
+}
+
+/* Extra-small devices */
+@media (max-width: 360px) {
+  .chip { font-size: 11px; padding: 5px 8px; }
+  .head-left h1 { font-size: 20px; }
+
+  .ring-wrap { width: 110px; height: 110px; }
+  .ring      { width: 110px; height: 110px; }
+
+  .actions { gap: 6px; }
+  .actions .btn { padding: 9px 10px; font-size: 12px; }
+}
+
+/* Safety: prevent any accidental horizontal scrolling */
+.goals-shell,
+.goals-header,
+.panel,
+.grid,
+.goal-card { max-width: 100%; overflow-wrap: anywhere; }

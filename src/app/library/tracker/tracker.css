@@ -196,9 +196,6 @@
     grid-template-columns: 1fr auto auto; /* input grows, unit + btn fixed */
   }
 }
-
-
-
 /* ---------- KPI cards (stats) ---------- */
 
 .stats {
@@ -207,7 +204,6 @@
   gap: 12px;
   margin-top: 20px;
 }
-
 .stat-card {
   display: grid;
   grid-template-columns: 56px 1fr;
@@ -224,7 +220,6 @@
   transform: translateY(-2px);
   box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
 }
-
 .icon {
   width: 44px;
   height: 44px;
@@ -771,6 +766,96 @@
     grid-template-columns: 96px 1fr 80px 80px 1fr 40px;
   }
 }
+
+
+/* ==============================
+   Reading Tracker — mobile patch
+   (add AFTER your current CSS)
+   ============================== */
+
+/* 0) Give space for your fixed navbar on phones */
+@media (max-width: 640px) {
+  .tracker-shell {
+    margin-top: calc(72px + env(safe-area-inset-top));
+    padding: 0 12px 24px;
+    border-radius: 14px;
+  }
+}
+
+/* 1) Header: stack correctly on small screens (fixes old .header selector) */
+@media (max-width: 720px) {
+  .tracker-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .head-right {
+    justify-items: stretch;
+    width: 100%;
+  }
+  .goal-saver {
+    grid-template-columns: 1fr auto auto; /* input grows, then unit + Save */
+    width: 100%;
+  }
+}
+
+/* 2) KPI cards: 2 cols on small / 1 col on very small */
+@media (max-width: 720px) { .stats { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 420px) { .stats { grid-template-columns: 1fr; } }
+
+/* 3) Panels grid: tighten spacing on phones (already 1 col at ≤1024) */
+@media (max-width: 640px) {
+  .grid { gap: 12px; }
+  .panel { padding: 14px; }
+}
+
+/* 4) Add Session form: stack fields */
+@media (max-width: 640px) {
+  .form-grid { grid-template-columns: 1fr; }
+  .form-grid .notes { grid-column: auto; }
+}
+
+/* 5) Custom book select: fit viewport on phones */
+@media (max-width: 640px) {
+  .select-menu { max-height: 45vh; }
+  .menu-list  { max-height: 45vh; overscroll-behavior: contain; }
+  .select-control { padding: 12px; }
+}
+
+/* 6) Heatmap: smaller cells on small screens */
+@media (max-width: 640px) { .heatmap { --cell: 22px; gap: 6px; } }
+@media (max-width: 400px) { .heatmap { --cell: 18px; gap: 5px; } }
+
+/* 7) Sessions table: horizontal scroll on phones (keeps columns readable) */
+.panel .table {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.panel .table .thead,
+.panel .table .row {
+  min-width: 700px; /* prevents column collapse when viewport is narrow */
+}
+
+/* Slightly narrower column widths at ≤640px */
+@media (max-width: 640px) {
+  .thead, .row { grid-template-columns: 100px 1fr 72px 72px 1fr 40px; }
+}
+
+/* 8) Touch/typography tweaks */
+@media (max-width: 640px) {
+  .btn { padding: 10px 12px; border-radius: 10px; }
+  .meta .value { font-size: 20px; }
+  .panel h3 { font-size: 18px; }
+  .head-left h1 { font-size: 22px; }
+  .head-left p  { font-size: 13px; }
+}
+
+/* 9) Keep sticky header inside the table panel */
+.panel .thead { top: 0; }
+
+/* 10) Ensure dropdowns aren’t clipped by panel overflow */
+.panel { overflow: visible; }
 
 
 

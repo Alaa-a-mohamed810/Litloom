@@ -258,3 +258,104 @@
     color: #94a3b8;
   }
 }
+
+
+
+/* =========================
+   Mobile responsiveness pass
+   ========================= */
+
+/* 1) Toolbar: make filters/chips horizontally scrollable on phones */
+@media (max-width: 600px) {
+  .mb__bar {
+    display: grid;
+    grid-template-columns: 1fr;         /* stack rows */
+    gap: 10px;
+    position: sticky;                   /* keeps controls visible while scrolling list */
+    top: calc(64px + env(safe-area-inset-top)); /* room for your fixed navbar */
+    background: #ffffff;
+    z-index: 5;
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+
+  .mb__filters,
+  .mb__chips {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap;                  /* prevent wrapping; allow horizontal scroll */
+    gap: 8px;
+    padding-bottom: 2px;                /* breathing room for hidden scrollbar */
+    scrollbar-width: none;              /* Firefox */
+  }
+  .mb__filters::-webkit-scrollbar,
+  .mb__chips::-webkit-scrollbar { display: none; } /* WebKit */
+
+  .mb__tab,
+  .mb__chip {
+    flex: 0 0 auto;                     /* don’t shrink */
+    scroll-snap-align: start;
+  }
+
+  /* Make the “Add New Book” button full-width for easy tapping */
+  .mb__addmid {
+    order: 3;                           /* show after filters/chips */
+    width: 100%;
+    margin-top: 0;
+  }
+  .mb__addmid .special {
+    width: 100%;
+    font-size: 16px;
+    padding: 10px 12px;
+    box-shadow: 0 6px 12px rgba(0,0,0,.08);
+  }
+}
+
+/* 2) Dropdown form: full-width on tablets/phones, comfy spacing */
+@media (max-width: 992px) {
+  .mb__dropdown {
+    width: 100%;
+    margin: 0;                          /* span container */
+    padding: 12px;
+  }
+}
+@media (max-width: 600px) {
+  .mb__dropdown { border-radius: 14px; }
+  .mb__row { grid-template-columns: 1fr; }    /* stack fields */
+  .mb__preview { grid-column: auto; }         /* preview below inputs */
+  .mb__actionsline {
+    flex-direction: column;                    /* buttons stack */
+    align-items: stretch;
+    gap: 10px;
+  }
+  .mb__actionsline .mb__tab {
+    height: 40px;
+    font-size: 15px;
+  }
+}
+
+/* 3) Make filter tabs/chips & buttons bigger touch targets on small screens */
+@media (max-width: 600px) {
+  .mb__tab { padding: 8px 12px; font-size: 14px; }
+  .mb__chip { padding: 8px 12px; font-size: 13px; }
+  .mb__btn  { height: 36px; font-size: 14px; }
+}
+
+/* 4) Cards grid: allow smaller tiles on narrow phones for 2 columns; 1 col on very narrow */
+@media (max-width: 520px) {
+  .mb__grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+}
+@media (max-width: 360px) {
+  .mb__grid { grid-template-columns: 1fr; }   /* single column on ultra-narrow devices */
+}
+
+/* 5) Cover preview inside dropdown: keep aspect and center */
+@media (max-width: 600px) {
+  .mb__cover { aspect-ratio: 3 / 4; }
+}
+
+/* 6) Small typography tweaks for readability */
+@media (max-width: 600px) {
+  .mb__title  { font-size: 14px; }
+  .mb__author { font-size: 12px; }
+}
